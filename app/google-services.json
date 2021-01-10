@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "44093047423",
+    "project_id": "hit-babysitter-app",
+    "storage_bucket": "hit-babysitter-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:44093047423:android:b5df970acd2173ec77f54a",
+        "android_client_info": {
+          "package_name": "com.example.instasitter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "44093047423-soh2h56i7l067tl8pe8k22deknci7gq3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA9F7dL47_b-q7wkyxyfR49iUq_ID48st8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "44093047423-soh2h56i7l067tl8pe8k22deknci7gq3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
