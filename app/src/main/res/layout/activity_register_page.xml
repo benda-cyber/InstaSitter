@@ -11,16 +11,70 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <TextView
+        <EditText
             android:id="@+id/registerName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="First Name" />
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Name" />
 
-        <TextView
+        <EditText
             android:id="@+id/registerFamilyName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
             android:text="Family Name" />
+
+        <EditText
+            android:id="@+id/dateOfBirth"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="date"
+            android:text="Date of Birth dd/mm/yyyy" />
+
+        <EditText
+            android:id="@+id/registerEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textEmailAddress"
+            android:text="Email Address" />
+
+        <EditText
+            android:id="@+id/registerPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPassword"
+            android:text="Password" />
+
+        <EditText
+            android:id="@+id/registerPasswordVerification"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="numberPassword"
+            android:text="password" />
+
+        <Switch
+            android:id="@+id/serviceProviderSwitch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Service provider" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Register" />
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cancel" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

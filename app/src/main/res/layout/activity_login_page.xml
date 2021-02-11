@@ -18,7 +18,7 @@
             android:layout_weight="1"
             android:ems="10"
             android:inputType="textEmailAddress"
-            android:text="EmailAddress" />
+            android:text="Email Address" />
 
         <EditText
             android:id="@+id/loginPassword"
