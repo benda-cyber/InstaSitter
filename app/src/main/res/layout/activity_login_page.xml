@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".LoginPage">
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_weight="1"
+        android:orientation="horizontal">
 
         <EditText
             android:id="@+id/loginEmailAddress"
@@ -19,6 +22,13 @@
             android:ems="10"
             android:inputType="textEmailAddress"
             android:text="Email Address" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="horizontal">
 
         <EditText
             android:id="@+id/loginPassword"
@@ -29,12 +39,27 @@
             android:inputType="textPassword"
             android:text="Password" />
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
         <Button
             android:id="@+id/login"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="Login" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="horizontal">
 
         <Button
             android:id="@+id/register"
@@ -43,4 +68,5 @@
             android:layout_weight="1"
             android:text="Register" />
     </LinearLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>

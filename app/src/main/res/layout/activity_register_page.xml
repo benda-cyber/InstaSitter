@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".RegisterPage">
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_weight="1"
+        android:orientation="horizontal">
 
         <EditText
             android:id="@+id/registerName"
@@ -18,6 +21,13 @@
             android:ems="10"
             android:inputType="textPersonName"
             android:text="Name" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="horizontal">
 
         <EditText
             android:id="@+id/registerFamilyName"
@@ -26,6 +36,13 @@
             android:ems="10"
             android:inputType="textPersonName"
             android:text="Family Name" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="horizontal">
 
         <EditText
             android:id="@+id/dateOfBirth"
@@ -34,6 +51,13 @@
             android:ems="10"
             android:inputType="date"
             android:text="Date of Birth dd/mm/yyyy" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="horizontal">
 
         <EditText
             android:id="@+id/registerEmail"
@@ -42,6 +66,13 @@
             android:ems="10"
             android:inputType="textEmailAddress"
             android:text="Email Address" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="horizontal">
 
         <EditText
             android:id="@+id/registerPassword"
@@ -50,6 +81,13 @@
             android:ems="10"
             android:inputType="textPassword"
             android:text="Password" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="horizontal">
 
         <EditText
             android:id="@+id/registerPasswordVerification"
@@ -58,18 +96,39 @@
             android:ems="10"
             android:inputType="numberPassword"
             android:text="password" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="horizontal">
 
         <Switch
             android:id="@+id/serviceProviderSwitch"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Service provider" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="horizontal">
 
         <Button
             android:id="@+id/button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Register" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="horizontal">
 
         <Button
             android:id="@+id/button2"
@@ -77,4 +136,4 @@
             android:layout_height="wrap_content"
             android:text="Cancel" />
     </LinearLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
