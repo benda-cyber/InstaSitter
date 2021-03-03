@@ -19,8 +19,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Name" />
+            android:hint="Name"
+            android:inputType="textPersonName" />
     </LinearLayout>
 
     <LinearLayout
@@ -34,8 +34,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Family Name" />
+            android:hint="Family Name"
+            android:inputType="textPersonName" />
     </LinearLayout>
 
     <LinearLayout
@@ -45,12 +45,44 @@
         android:orientation="horizontal">
 
         <EditText
-            android:id="@+id/dateOfBirth"
+            android:id="@+id/registerDateOfBirth"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="date"
-            android:text="Date of Birth dd/mm/yyyy" />
+            android:hint="Date of Birth dd/mm/yyyy"
+            android:inputType="date" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/registerPhone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:hint="Phone Number"
+            android:inputType="phone" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/registerAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:hint="Full Address"
+            android:inputType="textPostalAddress" />
     </LinearLayout>
 
     <LinearLayout
@@ -64,8 +96,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textEmailAddress"
-            android:text="Email Address" />
+            android:hint="Email Address"
+            android:inputType="textEmailAddress" />
     </LinearLayout>
 
     <LinearLayout
@@ -79,8 +111,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textPassword"
-            android:text="Password" />
+            android:hint="Password"
+            android:inputType="textPassword" />
     </LinearLayout>
 
     <LinearLayout
@@ -94,8 +126,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="numberPassword"
-            android:text="password" />
+            android:hint="Verify Password"
+            android:inputType="numberPassword" />
     </LinearLayout>
 
     <LinearLayout
@@ -118,9 +150,10 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/registerButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="createAccount"
             android:text="Register" />
     </LinearLayout>
 
@@ -131,9 +164,10 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/cancelRegistrationButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="cancelRegistration"
             android:text="Cancel" />
     </LinearLayout>
 </LinearLayout>

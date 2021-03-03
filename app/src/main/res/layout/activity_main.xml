@@ -30,10 +30,11 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/registerButton"
+            android:id="@+id/toRegisterFromMainButton"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:onClick="toRegisterPage"
             android:text="Register" />
     </LinearLayout>
 
@@ -44,10 +45,11 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/loginButton"
+            android:id="@+id/toLoginFromMainButton"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:onClick="toLoginPage"
             android:text="Login" />
     </LinearLayout>
 
