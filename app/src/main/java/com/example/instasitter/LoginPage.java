@@ -58,6 +58,12 @@ public class LoginPage extends AppCompatActivity {
                             FirebaseUser user = mAuth.getCurrentUser();
                             Toast.makeText(LoginPage.this, "Login worked.",
                                     Toast.LENGTH_SHORT).show();
+
+                            String uid = user.getUid();
+                            Intent intentLogin = new Intent(LoginPage.this, MainActivity.class);
+                            intentLogin.putExtra("uidkey",uid);
+                            startActivity(intentLogin);
+
                         } else {
                             // If sign in fails, display a message to the user.
                             Toast.makeText(LoginPage.this, "Authentication failed.",
