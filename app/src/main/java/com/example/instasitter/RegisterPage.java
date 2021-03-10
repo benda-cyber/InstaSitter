@@ -29,7 +29,7 @@ public class RegisterPage extends AppCompatActivity {
     EditText email;
     EditText password;
     String uid;
-
+    FirebaseDatabase database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +43,8 @@ public class RegisterPage extends AppCompatActivity {
         address = findViewById(R.id.registerAddress);
         email = findViewById(R.id.registerEmail);
         password = findViewById(R.id.registerPassword);
+        database = FirebaseDatabase.getInstance();
+
     }
 
     public void cancelRegistration(View view) {
@@ -70,8 +72,8 @@ public class RegisterPage extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             FirebaseUser user = mAuth.getCurrentUser();
 
+                            uid = user.getUid();
 
-                            FirebaseDatabase database = FirebaseDatabase.getInstance();
                             DatabaseReference myRef = database.getReference("users").child(uid);
 
                             User u = new User(nameStr, familyNameStr, dateOfBirthStr, phoneStr, addressStr, emailStr,passwordStr);

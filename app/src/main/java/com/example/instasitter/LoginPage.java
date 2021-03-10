@@ -68,6 +68,7 @@ public class LoginPage extends AppCompatActivity {
                             // If sign in fails, display a message to the user.
                             Toast.makeText(LoginPage.this, "Login failed.",
                                     Toast.LENGTH_SHORT).show();
+                            Intent intentLogin = new Intent(LoginPage.this, LoginPage.class);
                         }
 
 
