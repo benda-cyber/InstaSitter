@@ -37,14 +37,14 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
         data = new ArrayList<ServiceProviderModel>();
-        for (int i = 0; i < MyData.nameArray.length; i++) {
-            data.add(new ServiceProviderModel(
-                    MyData.nameArray[i],
-                    MyData.locationArray[i],
-                    MyData.serviceTypeArray[i],
-                    MyData.id_[i],
-                    MyData.drawableArray[i]
-            ));
+            for (int i = 0; i < MyData.nameArray.length; i++) {
+                data.add(new ServiceProviderModel(
+                        MyData.nameArray[i],
+                        MyData.locationArray[i],
+                        MyData.serviceTypeArray[i],
+                        MyData.id_[i],
+                        MyData.drawableArray[i]
+                ));
         }
 
         removedItems = new ArrayList<Integer>();
@@ -53,12 +53,12 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        super.onCreateOptionsMenu(menu);
-        getMenuInflater().inflate(R.menu.main_activity_menu, menu);
-        return true;
-    }
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        super.onCreateOptionsMenu(menu);
+//        getMenuInflater().inflate(R.menu.main_activity_menu, menu);
+//        return true;
+//    }
 
     public void toRegisterPage(View view) {
 
