@@ -29,13 +29,12 @@ public class RegisterPage extends AppCompatActivity {
     EditText email;
     EditText password;
     String uid;
-    FirebaseDatabase database;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_page);
-
         mAuth = FirebaseAuth.getInstance();
         name = findViewById(R.id.registerName);
         familyName = findViewById(R.id.registerFamilyName);
@@ -62,6 +61,7 @@ public class RegisterPage extends AppCompatActivity {
         String emailStr = email.getText().toString();
         String passwordStr = password.getText().toString();
 
+
         mAuth.createUserWithEmailAndPassword(emailStr, passwordStr)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -69,20 +69,23 @@ public class RegisterPage extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             FirebaseUser user = mAuth.getCurrentUser();
-                            Toast.makeText(RegisterPage.this, "Registered successfully.",
-                                    Toast.LENGTH_SHORT).show();
 
+
+                            FirebaseDatabase database = FirebaseDatabase.getInstance();
                             DatabaseReference myRef = database.getReference("users").child(uid);
 
-                            User u = new User(nameStr, familyNameStr, dateOfBirthStr, phoneStr,addressStr,emailStr,passwordStr);
+                            User u = new User(nameStr, familyNameStr, dateOfBirthStr, phoneStr, addressStr, emailStr,passwordStr);
                             myRef.setValue(u);
+
+                            Toast.makeText(RegisterPage.this, "Registered successfully.",
+                                    Toast.LENGTH_SHORT).show();
 
                             Intent intentLogin = new Intent(RegisterPage.this, MainActivity.class);
                             intentLogin.putExtra("keyuid",uid);
                             startActivity(intentLogin);
                         } else {
                             // If sign in fails, display a message to the user.
-                            Toast.makeText(RegisterPage.this, "Authentication failed.",
+                            Toast.makeText(RegisterPage.this, "Registration failed.",
                                     Toast.LENGTH_SHORT).show();
                         }
 
