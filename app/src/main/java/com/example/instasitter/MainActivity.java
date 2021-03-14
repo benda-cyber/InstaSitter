@@ -1,6 +1,9 @@
 package com.example.instasitter;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -21,6 +24,8 @@ public class MainActivity extends AppCompatActivity {
     private static ArrayList<ServiceProviderModel> data;
     static View.OnTouchListener myOnClickListener;
     private static ArrayList<Integer> removedItems;
+
+    private FragmentManager fragmentManager;
 
 
     @Override
@@ -51,6 +56,13 @@ public class MainActivity extends AppCompatActivity {
 
         adapter = new CustomAdapter(data);
         recyclerView.setAdapter(adapter);
+
+        fragmentManager = getSupportFragmentManager();
+        fragment_reg_ser FragmentRegSer = new fragment_reg_ser();
+
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.add(R.id.frameCon, FragmentRegSer).commit();
+
     }
 
 //    @Override
