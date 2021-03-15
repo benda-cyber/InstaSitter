@@ -64,15 +64,22 @@ public class fragment_reg_ser extends Fragment {
         View view = inflater.inflate(R.layout.fragment_reg_ser, container, false);
 
         Button button = (Button) view.findViewById(R.id.servicePB);
-        button.setOnClickListener(new View.OnClickListener() {
+
+        button.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
 
+
                 MainActivity mainActivity =  (MainActivity) getActivity();
+
             }
         });
 
         return view;
+
+
+
+
 
 
     }
