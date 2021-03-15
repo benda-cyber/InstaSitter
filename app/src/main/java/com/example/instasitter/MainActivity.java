@@ -25,7 +25,6 @@ public class MainActivity extends AppCompatActivity {
     static View.OnTouchListener myOnClickListener;
     private static ArrayList<Integer> removedItems;
 
-    private FragmentManager fragmentManager;
 
 
     @Override
@@ -57,11 +56,6 @@ public class MainActivity extends AppCompatActivity {
         adapter = new CustomAdapter(data);
         recyclerView.setAdapter(adapter);
 
-        fragmentManager = getSupportFragmentManager();
-        fragment_reg_ser FragmentRegSer = new fragment_reg_ser();
-
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.frameCon, FragmentRegSer).commit();
 
     }
 
