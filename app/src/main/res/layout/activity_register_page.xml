@@ -137,8 +137,8 @@
         android:layout_weight="1"
         android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/servicePB"
+        <Switch
+            android:id="@+id/servisProvider"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
