@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameCon"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -136,12 +137,12 @@
         android:layout_weight="1"
         android:orientation="horizontal">
 
-        <Switch
-            android:id="@+id/serviceProviderSwitch"
-            android:layout_width="match_parent"
+        <Button
+            android:id="@+id/servicePB"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Service provider"
-            android:textSize="24sp" />
+            android:layout_weight="1"
+            android:text="Service provider" />
     </LinearLayout>
 
     <LinearLayout
@@ -171,18 +172,12 @@
             android:onClick="cancelRegistration"
             android:text="Cancel" />
 
-        <Switch
-            android:id="@+id/switch1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Switch" />
-
         <FrameLayout
             android:id="@+id/frameLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
         </FrameLayout>
+
     </LinearLayout>
 </LinearLayout>
