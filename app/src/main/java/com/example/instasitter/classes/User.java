@@ -1,4 +1,4 @@
-package com.example.instasitter;
+package com.example.instasitter.classes;
 
 public class User {
 

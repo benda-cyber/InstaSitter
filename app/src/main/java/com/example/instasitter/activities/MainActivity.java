@@ -1,28 +1,29 @@
-package com.example.instasitter;
+package com.example.instasitter.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
+
+import com.example.instasitter.adapters.CardCustomAdapter;
+import com.example.instasitter.R;
+import com.example.instasitter.classes.ServiceProviderModel;
+import com.example.instasitter.classes.MyData;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static CustomAdapter adapter;
+    private static CardCustomAdapter adapter;
     private RecyclerView.LayoutManager layoutManager;
     private static RecyclerView recyclerView;
     private static ArrayList<ServiceProviderModel> data;
-    static View.OnTouchListener myOnClickListener;
+    public static View.OnTouchListener myOnClickListener;
     private static ArrayList<Integer> removedItems;
 
 
@@ -32,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        recyclerView = (RecyclerView) findViewById(R.id.service_provider_recycler_view);
+        recyclerView = (RecyclerView) findViewById(R.id.service_provider_reviews_recycler_view);
         recyclerView.setHasFixedSize(true);
 
         layoutManager = new LinearLayoutManager(this);
@@ -53,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
 
         removedItems = new ArrayList<Integer>();
 
-        adapter = new CustomAdapter(data);
+        adapter = new CardCustomAdapter(data);
         recyclerView.setAdapter(adapter);
 
 
@@ -82,7 +83,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void goToServiceProvider(View view) {
-
+        Button serviceProviderCard = (Button) view;
+        Intent intent = new Intent(this, ServiceProviderProfile.class);
+        startActivity(intent);
 
     }
 }

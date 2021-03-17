@@ -1,16 +1,15 @@
-package com.example.instasitter;
+package com.example.instasitter.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.instasitter.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -60,19 +59,25 @@ public class LoginPage extends AppCompatActivity {
                                     Toast.LENGTH_SHORT).show();
 
                             String uid = user.getUid();
-                            Intent intentLogin = new Intent(LoginPage.this, MainActivity.class);
-                            intentLogin.putExtra("uidkey",uid);
-                            startActivity(intentLogin);
+                            Intent intentToMain = new Intent(LoginPage.this, MainActivity.class);
+                            intentToMain.putExtra("uidkey",uid);
+                            startActivity(intentToMain);
 
                         } else {
                             // If sign in fails, display a message to the user.
                             Toast.makeText(LoginPage.this, "Login failed.",
                                     Toast.LENGTH_SHORT).show();
-                            Intent intentLogin = new Intent(LoginPage.this, LoginPage.class);
+                            Intent intentToLogin = new Intent(LoginPage.this, LoginPage.class);
                         }
 
 
                     }
                 });
+    }
+
+    public void backToMainPage(View view) {
+        Intent intentToMain = new Intent(LoginPage.this, MainActivity.class);
+        startActivity(intentToMain);
+
     }
 }

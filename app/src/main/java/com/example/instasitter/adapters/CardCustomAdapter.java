@@ -1,5 +1,7 @@
-package com.example.instasitter;
+package com.example.instasitter.adapters;
 
+import android.content.ClipData.Item;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -7,20 +9,29 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView.ViewHolder;
+
+import com.example.instasitter.R;
+import com.example.instasitter.activities.ServiceProviderProfile;
+import com.example.instasitter.activities.MainActivity;
+import com.example.instasitter.classes.ServiceProviderModel;
+
 import java.util.ArrayList;
 
-public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHolder> {
+public class CardCustomAdapter extends RecyclerView.Adapter<CardCustomAdapter.MyViewHolder> {
 
     private ArrayList<ServiceProviderModel> dataSet;
 
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder {
+    public static class MyViewHolder extends ViewHolder {
 
         CardView cardView;
         TextView textViewName;
         TextView textViewLocation;
         TextView textViewServiceType;
         ImageView imageViewIcon;
+        View itemView;
+        Item currentItem;
 
         public MyViewHolder(View itemView) {
             super(itemView);
@@ -30,11 +41,20 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
             this.textViewLocation = (TextView) itemView.findViewById(R.id.serviceProviderLocation);
             this.textViewServiceType = (TextView) itemView.findViewById(R.id.serviceProviderServiceType);
             this.imageViewIcon = (ImageView) itemView.findViewById(R.id.serviceProviderPhoto);
+            this.itemView = itemView;
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override public void onClick(View view) {
+                    // item clicked
+                }
+            });
 
         }
     }
 
-    public CustomAdapter(ArrayList<ServiceProviderModel> data) {
+
+
+    public CardCustomAdapter(ArrayList<ServiceProviderModel> data) {
         this.dataSet = data;
     }
 
@@ -65,7 +85,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
         textViewServiceType.setText(dataSet.get(listPosition).getServiceType());
         imageView.setImageResource(dataSet.get(listPosition).getImage());
 
-        cardView.setOnLongClickListener(new View.OnLongClickListener() {
+        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
 
@@ -73,7 +93,16 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
                 return false;
             }
         });
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), ServiceProviderProfile.class);
+                v.getContext().startActivity(intent);
+            }
+        });
     }
+
 
     @Override
     public int getItemCount() {
