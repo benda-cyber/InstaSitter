@@ -102,4 +102,11 @@ public class RegisterPage extends AppCompatActivity {
     }
 
 
+    public void funcSwitch(View view){
+        Intent intent = new Intent(this ,ServiceProviderExtra.class);
+        startActivity(intent);
+    }
+
+
+
 }
