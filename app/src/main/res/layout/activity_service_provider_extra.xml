@@ -15,48 +15,49 @@
             android:id="@+id/steps"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="0.3"
+            android:layout_weight="1"
             android:text="just a few more steps"
             android:textSize="36sp" />
 
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="0.3"
-            android:text="please upload an updated photo of you" />
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/imagetoupload"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="0.25"
+            android:layout_weight="1"
             tools:srcCompat="@tools:sample/avatars" />
 
-        <TextView
-            android:id="@+id/textView4"
+        <Button
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="0.3"
-            android:text="please upload an updated photo of your ID" />
+            android:layout_weight="1"
+            android:text="upload an updated photo of you"/>
+
 
         <ImageView
-            android:id="@+id/imageView3"
+            android:id="@+id/imagetoupload2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="0.25"
+            android:layout_weight="1"
             tools:srcCompat="@tools:sample/avatars" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="upload an updated photo of your ID"/>
 
         <TextView
             android:id="@+id/kindofser"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="what kind of service are you providing" />
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="what kind of service are you providing?" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="0.3"
+            android:layout_weight="1"
             android:orientation="horizontal">
 
             <Switch
@@ -78,7 +79,7 @@
             android:id="@+id/regreg"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="0.3"
+            android:layout_weight="1"
             android:gravity="center"
             android:text="Register" />
 
