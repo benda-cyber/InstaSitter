@@ -28,10 +28,11 @@
             tools:srcCompat="@tools:sample/avatars" />
 
         <Button
+            android:id="@+id/Bphoto"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="upload an updated photo of you"/>
+            android:text="upload an updated photo of you" />
 
 
         <ImageView
@@ -42,10 +43,11 @@
             tools:srcCompat="@tools:sample/avatars" />
 
         <Button
+            android:id="@+id/BIDphoto"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="upload an updated photo of your ID"/>
+            android:text="upload an updated photo of your ID" />
 
         <TextView
             android:id="@+id/kindofser"
