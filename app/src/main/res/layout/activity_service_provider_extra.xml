@@ -47,6 +47,33 @@
             android:layout_weight="0.25"
             tools:srcCompat="@tools:sample/avatars" />
 
+        <TextView
+            android:id="@+id/kindofser"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="what kind of service are you providing" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.3"
+            android:orientation="horizontal">
+
+            <Switch
+                android:id="@+id/DogWalker"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="DogWalker" />
+
+            <Switch
+                android:id="@+id/BabySiter"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="BabySiter" />
+        </LinearLayout>
+
         <Button
             android:id="@+id/regreg"
             android:layout_width="match_parent"
