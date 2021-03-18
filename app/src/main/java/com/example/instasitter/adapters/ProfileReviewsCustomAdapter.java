@@ -29,20 +29,22 @@ public class ProfileReviewsCustomAdapter extends RecyclerView.Adapter<ProfileRev
 
             CardView cardView;
             TextView textViewName;
-            TextView textViewLocation;
-            TextView textViewServiceType;
-            ImageView imageViewIcon;
+            TextView textViewRating;
+            TextView textViewRaterTitle;
+            TextView textViewRaterText;
+
             View itemView;
             ClipData.Item currentItem;
 
             public MyViewHolder(View itemView) {
                 super(itemView);
 
-                this.cardView = (CardView) itemView.findViewById(R.id.card_view);
-                this.textViewName = (TextView) itemView.findViewById(R.id.serviceProviderName);
-                this.textViewLocation = (TextView) itemView.findViewById(R.id.serviceProviderLocation);
-                this.textViewServiceType = (TextView) itemView.findViewById(R.id.serviceProviderServiceType);
-                this.imageViewIcon = (ImageView) itemView.findViewById(R.id.serviceProviderPhoto);
+                this.cardView = (CardView) itemView.findViewById(R.id.review_card_view);
+                this.textViewName = (TextView) itemView.findViewById(R.id.raterName);
+                this.textViewRating = (TextView) itemView.findViewById(R.id.raterRating);
+                this.textViewRaterTitle = (TextView) itemView.findViewById(R.id.raterTitle);
+                this.textViewRaterText = (TextView) itemView.findViewById(R.id.raterReviewText);
+
                 this.itemView = itemView;
 
                 itemView.setOnClickListener(new View.OnClickListener() {
@@ -77,15 +79,15 @@ public class ProfileReviewsCustomAdapter extends RecyclerView.Adapter<ProfileRev
         public void onBindViewHolder(final MyViewHolder holder, final int listPosition) {
 
             TextView textViewName = holder.textViewName;
-            TextView textViewLocation = holder.textViewLocation;
-            TextView textViewServiceType = holder.textViewServiceType;
-            ImageView imageView = holder.imageViewIcon;
+            TextView textViewRating = holder.textViewRating;
+            TextView textViewRaterTitle = holder.textViewRaterTitle;
+            TextView textViewRaterText = holder.textViewRaterText;
             CardView cardView = holder.cardView;
 
             textViewName.setText(dataSet.get(listPosition).getName());
-            textViewLocation.setText(dataSet.get(listPosition).getLocation());
-            textViewServiceType.setText(dataSet.get(listPosition).getServiceType());
-            imageView.setImageResource(dataSet.get(listPosition).getImage());
+            textViewRating.setText(dataSet.get(listPosition).getLocation());
+            textViewRaterTitle.setText(dataSet.get(listPosition).getServiceType());
+            textViewRaterText.setText(dataSet.get(listPosition).getServiceType());
 
             holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override

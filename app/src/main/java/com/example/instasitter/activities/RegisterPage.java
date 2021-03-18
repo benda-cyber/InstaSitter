@@ -2,11 +2,13 @@ package com.example.instasitter.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SwitchCompat;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import com.example.instasitter.R;
@@ -31,7 +33,7 @@ public class RegisterPage extends AppCompatActivity {
     EditText password;
     String uid;
     FirebaseDatabase database;
-
+    Switch isServiceProvider;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,8 +48,8 @@ public class RegisterPage extends AppCompatActivity {
         email = findViewById(R.id.registerEmail);
         password = findViewById(R.id.registerPassword);
         database = FirebaseDatabase.getInstance();
-
-
+        isServiceProvider = (Switch) findViewById(R.id.serviceProvider);
+//        SwitchCompat.setOnCheckedChangeListener((buttonView, isChecked)
 
 
     }
@@ -84,12 +86,20 @@ public class RegisterPage extends AppCompatActivity {
                             User u = new User(nameStr, familyNameStr, dateOfBirthStr, phoneStr, addressStr, emailStr,passwordStr);
                             myRef.setValue(u);
 
-                            Toast.makeText(RegisterPage.this, "Registered successfully.",
-                                    Toast.LENGTH_SHORT).show();
 
-                            Intent intentLogin = new Intent(RegisterPage.this, MainActivity.class);
-                            intentLogin.putExtra("keyuid",uid);
-                            startActivity(intentLogin);
+                            if(isServiceProvider.isChecked())
+                            {
+                                Intent intentExtraPage = new Intent(RegisterPage.this, ServiceProviderExtra.class);
+                                intentExtraPage.putExtra("keyuid",uid);
+                                startActivity(intentExtraPage);
+                            }
+                            else {
+                                Toast.makeText(RegisterPage.this, "Registered successfully.",
+                                        Toast.LENGTH_SHORT).show();
+                                Intent intentLogin = new Intent(RegisterPage.this, MainActivity.class);
+                                intentLogin.putExtra("keyuid",uid);
+                                startActivity(intentLogin);
+                            }
                         } else {
                             // If sign in fails, display a message to the user.
                             Toast.makeText(RegisterPage.this, "Registration failed.",
@@ -103,8 +113,7 @@ public class RegisterPage extends AppCompatActivity {
 
 
     public void funcSwitch(View view){
-        Intent intent = new Intent(this ,ServiceProviderExtra.class);
-        startActivity(intent);
+
     }
 
 

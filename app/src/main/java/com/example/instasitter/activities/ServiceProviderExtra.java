@@ -11,8 +11,7 @@ import android.widget.ImageView;
 
 import com.example.instasitter.R;
 
-public class ServiceProviderExtra extends AppCompatActivity
-{
+public class ServiceProviderExtra extends AppCompatActivity implements View.OnClickListener {
 
 
     ImageView imagetoupload, imagetoupload2;
@@ -34,4 +33,8 @@ public class ServiceProviderExtra extends AppCompatActivity
     }
 
 
+    @Override
+    public void onClick(View v) {
+
+    }
 }

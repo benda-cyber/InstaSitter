@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.instasitter.R;
-import com.example.instasitter.adapters.CardCustomAdapter;
 import com.example.instasitter.adapters.ProfileReviewsCustomAdapter;
 import com.example.instasitter.classes.MyData;
 import com.example.instasitter.classes.ServiceProviderModel;
@@ -28,7 +27,7 @@ public class ServiceProviderProfile extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.service_provider_profile_layout);
+        setContentView(R.layout.service_provider_profile_reviews_layout);
 
 
         recyclerView = (RecyclerView) findViewById(R.id.reviews_recycler_view);
