@@ -5,13 +5,13 @@
     android:id="@+id/frameCon"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/pagestyle"
     android:orientation="vertical"
-    tools:context=".activities.RegisterPage"
     android:paddingLeft="16dp"
     android:paddingTop="16dp"
     android:paddingRight="16dp"
     android:paddingBottom="16dp"
-    >
+    tools:context=".activities.RegisterPage">
 
 
     <LinearLayout
@@ -147,7 +147,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Service provider" />
+            android:text="Service provider"
+            android:textColor="@android:color/darker_gray"
+            android:textColorHighlight="@color/teal_700"
+            android:textColorHint="@color/teal_700" />
     </LinearLayout>
 
     <LinearLayout
@@ -160,6 +163,7 @@
             android:id="@+id/registerButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/buttonstyle"
             android:onClick="createAccount"
             android:text="Register" />
     </LinearLayout>
@@ -174,8 +178,11 @@
             android:id="@+id/cancelRegistrationButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="cancelRegistration"
-            android:text="Cancel" />
+            android:layout_gravity="center"
+            android:background="@android:drawable/ic_menu_close_clear_cancel"
+            android:foregroundGravity="center_horizontal"
+            android:gravity="center"
+            android:onClick="cancelRegistration" />
 
     </LinearLayout>
 </LinearLayout>
