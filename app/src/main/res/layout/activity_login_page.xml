@@ -85,9 +85,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@drawable/pagestyle"
-            android:onClick="backToMainPage"
-            android:text="cancel" />
+            android:background="@android:drawable/ic_menu_close_clear_cancel"
+            android:onClick="backToMainPage" />
     </LinearLayout>
 
 </LinearLayout>
