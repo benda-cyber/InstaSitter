@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.RecyclerView.ViewHolder;
@@ -21,9 +23,9 @@ import java.util.ArrayList;
 public class CardCustomAdapter extends RecyclerView.Adapter<CardCustomAdapter.MyViewHolder> {
 
     private ArrayList<ServiceProviderModel> dataSet;
+    private MyViewHolder.OnCardListener mOnCardListener;
 
-
-    public static class MyViewHolder extends ViewHolder {
+    public static class MyViewHolder extends ViewHolder implements View.OnClickListener {
 
         CardView cardView;
         TextView textViewName;
@@ -32,8 +34,9 @@ public class CardCustomAdapter extends RecyclerView.Adapter<CardCustomAdapter.My
         ImageView imageViewIcon;
         View itemView;
         Item currentItem;
+        OnCardListener onCardListener;
 
-        public MyViewHolder(View itemView) {
+        public MyViewHolder(@NonNull View itemView, OnCardListener onCardListener) {
             super(itemView);
 
             this.cardView = (CardView) itemView.findViewById(R.id.card_view);
@@ -42,37 +45,42 @@ public class CardCustomAdapter extends RecyclerView.Adapter<CardCustomAdapter.My
             this.textViewServiceType = (TextView) itemView.findViewById(R.id.serviceProviderServiceType);
             this.imageViewIcon = (ImageView) itemView.findViewById(R.id.serviceProviderPhoto);
             this.itemView = itemView;
+            this.onCardListener = onCardListener;
 
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override public void onClick(View view) {
-                    // item clicked
-                }
-            });
+            itemView.setOnClickListener(this);
+
+        }
+
+        @Override
+        public void onClick(View v) {
+            onCardListener.onCardClick(getAdapterPosition());
+        }
+
+        public interface OnCardListener{
+
+            void onCardClick(int position);
 
         }
     }
 
 
 
-    public CardCustomAdapter(ArrayList<ServiceProviderModel> data) {
+    public CardCustomAdapter(ArrayList<ServiceProviderModel> data, MyViewHolder.OnCardListener onCardListener) {
         this.dataSet = data;
+        this.mOnCardListener = onCardListener;
     }
 
     @Override
-    public MyViewHolder onCreateViewHolder(ViewGroup parent,
-                                           int viewType) {
-        View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.cards_layout, parent, false);
+    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cards_layout, parent, false);
 
-        view.setOnTouchListener(MainActivity.myOnClickListener);
-
-        MyViewHolder myViewHolder = new MyViewHolder(view);
+        MyViewHolder myViewHolder = new MyViewHolder(view,mOnCardListener);
 
         return myViewHolder;
     }
 
     @Override
-    public void onBindViewHolder(final MyViewHolder holder, final int listPosition) {
+    public void onBindViewHolder(@NonNull final MyViewHolder holder, final int listPosition) {
 
         TextView textViewName = holder.textViewName;
         TextView textViewLocation = holder.textViewLocation;
@@ -114,5 +122,6 @@ public class CardCustomAdapter extends RecyclerView.Adapter<CardCustomAdapter.My
         notifyItemRemoved(position);
         notifyItemRangeChanged(position, dataSet.size());
     }
+
 
 }

@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.instasitter.R;
-import com.example.instasitter.adapters.ProfileReviewsCustomAdapter;
+//import com.example.instasitter.adapters.ProfileReviewsCustomAdapter;
 import com.example.instasitter.classes.MyData;
 import com.example.instasitter.classes.ServiceProviderModel;
 
@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 public class ServiceProviderProfile extends AppCompatActivity {
 
-    private static ProfileReviewsCustomAdapter adapter;
+//    private static ProfileReviewsCustomAdapter adapter;
     private RecyclerView.LayoutManager layoutManager;
     private static RecyclerView recyclerView;
     private static ArrayList<ServiceProviderModel> data;
@@ -51,8 +51,8 @@ public class ServiceProviderProfile extends AppCompatActivity {
 
         removedItems = new ArrayList<Integer>();
 
-        adapter = new ProfileReviewsCustomAdapter(data);
-        recyclerView.setAdapter(adapter);
+//        adapter = new ProfileReviewsCustomAdapter(data);
+//        recyclerView.setAdapter(adapter);
 
 
 

@@ -18,7 +18,7 @@ import com.example.instasitter.classes.MyData;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements CardCustomAdapter.MyViewHolder.OnCardListener{
 
     private static CardCustomAdapter adapter;
     private RecyclerView.LayoutManager layoutManager;
@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
 
         removedItems = new ArrayList<Integer>();
 
-        adapter = new CardCustomAdapter(data);
+        adapter = new CardCustomAdapter(data,this);
         recyclerView.setAdapter(adapter);
 
 
@@ -81,6 +81,13 @@ public class MainActivity extends AppCompatActivity {
         Button toLogin = (Button) view;
         Intent intent = new Intent(this, LoginPage.class);
         startActivity(intent);
+    }
+
+    @Override
+    public void onCardClick(int position) {
+        data.get(position);
+        Intent intent = new Intent(this,ServiceProviderProfile.class);
+
     }
 //
 //    public void goToServiceProvider(View view) {
