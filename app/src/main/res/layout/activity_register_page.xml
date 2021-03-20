@@ -163,7 +163,7 @@
             android:id="@+id/registerButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/buttonstyle"
+            android:background="@drawable/buttonstule2"
             android:onClick="createAccount"
             android:text="Register" />
     </LinearLayout>
