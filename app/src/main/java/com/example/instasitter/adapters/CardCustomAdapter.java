@@ -22,10 +22,42 @@ import java.util.ArrayList;
 
 public class CardCustomAdapter extends RecyclerView.Adapter<CardCustomAdapter.MyViewHolder> {
 
+    private static final String TAG = "CardCustomAdapter";
     private ArrayList<ServiceProviderModel> dataSet;
-    private MyViewHolder.OnCardListener mOnCardListener;
+    private OnCardListener mOnCardListener;
 
-    public static class MyViewHolder extends ViewHolder implements View.OnClickListener {
+    public CardCustomAdapter(ArrayList<ServiceProviderModel> data, OnCardListener onCardListener) {
+        this.dataSet = data;
+        this.mOnCardListener = onCardListener;
+    }
+
+    @NonNull
+    @Override
+    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cards_layout, parent, false);
+
+        MyViewHolder myViewHolder = new MyViewHolder(view,mOnCardListener);
+
+        return myViewHolder;
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull MyViewHolder holder, int listPosition) {
+
+        TextView textViewName = holder.textViewName;
+        TextView textViewLocation = holder.textViewLocation;
+        TextView textViewServiceType = holder.textViewServiceType;
+        ImageView imageView = holder.imageViewIcon;
+        CardView cardView = holder.cardView;
+
+        textViewName.setText(dataSet.get(listPosition).getName());
+        textViewLocation.setText(dataSet.get(listPosition).getLocation());
+        textViewServiceType.setText(dataSet.get(listPosition).getServiceType());
+        imageView.setImageResource(dataSet.get(listPosition).getImage());
+
+    }
+
+    public class MyViewHolder extends ViewHolder implements View.OnClickListener {
 
         CardView cardView;
         TextView textViewName;
@@ -56,60 +88,16 @@ public class CardCustomAdapter extends RecyclerView.Adapter<CardCustomAdapter.My
             onCardListener.onCardClick(getAdapterPosition());
         }
 
-        public interface OnCardListener{
 
-            void onCardClick(int position);
-
-        }
     }
 
 
+    public interface OnCardListener{
 
-    public CardCustomAdapter(ArrayList<ServiceProviderModel> data, MyViewHolder.OnCardListener onCardListener) {
-        this.dataSet = data;
-        this.mOnCardListener = onCardListener;
+        void onCardClick(int position);
+
     }
 
-    @Override
-    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cards_layout, parent, false);
-
-        MyViewHolder myViewHolder = new MyViewHolder(view,mOnCardListener);
-
-        return myViewHolder;
-    }
-
-    @Override
-    public void onBindViewHolder(@NonNull final MyViewHolder holder, final int listPosition) {
-
-        TextView textViewName = holder.textViewName;
-        TextView textViewLocation = holder.textViewLocation;
-        TextView textViewServiceType = holder.textViewServiceType;
-        ImageView imageView = holder.imageViewIcon;
-        CardView cardView = holder.cardView;
-
-        textViewName.setText(dataSet.get(listPosition).getName());
-        textViewLocation.setText(dataSet.get(listPosition).getLocation());
-        textViewServiceType.setText(dataSet.get(listPosition).getServiceType());
-        imageView.setImageResource(dataSet.get(listPosition).getImage());
-
-        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View view) {
-
-                removeAt(listPosition);
-                return false;
-            }
-        });
-
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), ServiceProviderProfile.class);
-                v.getContext().startActivity(intent);
-            }
-        });
-    }
 
 
     @Override

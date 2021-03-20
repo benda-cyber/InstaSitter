@@ -1,6 +1,9 @@
 package com.example.instasitter.classes;
 
-public class ServiceProviderModel {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class ServiceProviderModel implements Parcelable {
 
     String name;
     String location;
@@ -17,6 +20,25 @@ public class ServiceProviderModel {
     }
 
 
+    protected ServiceProviderModel(Parcel in) {
+        name = in.readString();
+        location = in.readString();
+        serviceType = in.readString();
+        id_ = in.readInt();
+        image = in.readInt();
+    }
+
+    public static final Creator<ServiceProviderModel> CREATOR = new Creator<ServiceProviderModel>() {
+        @Override
+        public ServiceProviderModel createFromParcel(Parcel in) {
+            return new ServiceProviderModel(in);
+        }
+
+        @Override
+        public ServiceProviderModel[] newArray(int size) {
+            return new ServiceProviderModel[size];
+        }
+    };
 
     public String getName() {
         return name;
@@ -36,6 +58,20 @@ public class ServiceProviderModel {
 
     public int getId() {
         return id_;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(name);
+        dest.writeString(location);
+        dest.writeString(serviceType);
+        dest.writeInt(id_);
+        dest.writeInt(image);
     }
 }
 

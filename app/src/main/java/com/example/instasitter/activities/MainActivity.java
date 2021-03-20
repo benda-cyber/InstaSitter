@@ -8,17 +8,21 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.instasitter.adapters.CardCustomAdapter;
 import com.example.instasitter.R;
 import com.example.instasitter.classes.ServiceProviderModel;
 import com.example.instasitter.classes.MyData;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements CardCustomAdapter.MyViewHolder.OnCardListener{
+public class MainActivity extends AppCompatActivity implements CardCustomAdapter.OnCardListener,FloatingActionButton.OnClickListener{
 
     private static CardCustomAdapter adapter;
     private RecyclerView.LayoutManager layoutManager;
@@ -26,7 +30,7 @@ public class MainActivity extends AppCompatActivity implements CardCustomAdapter
     private static ArrayList<ServiceProviderModel> data;
     public static View.OnTouchListener myOnClickListener;
     private static ArrayList<Integer> removedItems;
-
+    private static final String TAG = "MainActivity";
 
 
     @Override
@@ -85,9 +89,17 @@ public class MainActivity extends AppCompatActivity implements CardCustomAdapter
 
     @Override
     public void onCardClick(int position) {
-        data.get(position);
-        Intent intent = new Intent(this,ServiceProviderProfile.class);
 
+        Intent intent = new Intent(this,ServiceProviderProfile.class);
+        intent.putExtra("service_provider_profile", data.get(position));
+        Log.d(TAG, "onCardClick: "+data.get(position));
+        startActivity(intent);
+    }
+
+    @Override
+    public void onClick(View v) {
+        Intent intent = new Intent(this, ServiceProviderProfile.class);
+        startActivity(intent);
     }
 //
 //    public void goToServiceProvider(View view) {

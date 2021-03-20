@@ -2,6 +2,9 @@ package com.example.instasitter.activities;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.RatingBar;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
@@ -23,11 +26,37 @@ public class ServiceProviderProfile extends AppCompatActivity {
     private static ArrayList<ServiceProviderModel> data;
     public static View.OnTouchListener myOnClickListener;
     private static ArrayList<Integer> removedItems;
+    ServiceProviderModel currentProfile;
+    Bundle extras;
+    TextView textViewName;
+    TextView textViewLocation;
+    TextView textViewServiceType;
+    TextView textViewAbout;
+    ImageView imageView;
+    RatingBar ratingBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_service_provider_profile);
+        textViewName = (TextView) findViewById(R.id.serviceProviderNameInProfile);
+        textViewLocation = (TextView) findViewById(R.id.serviceProviderLocationInProfile);
+        textViewServiceType = (TextView) findViewById(R.id.serviceType);
+        textViewAbout = (TextView) findViewById(R.id.aboutInProfile);
+        ratingBar = (RatingBar) findViewById(R.id.ratingBar);
+        imageView = (ImageView) findViewById(R.id.profilePicture);
+        extras = getIntent().getExtras();
+
+        if (getIntent().hasExtra("service_provider_profile")) {
+            currentProfile = getIntent().getParcelableExtra("service_provider_profile");
+
+            textViewName.setText(currentProfile.getName());
+            textViewLocation.setText(currentProfile.getLocation());
+            textViewServiceType.setText(currentProfile.getServiceType());
+            //textViewAbout.setText();
+           // ratingBar.setNumStars(MyData.rating[profileId]);
+            imageView.setImageResource(currentProfile.getImage());
+        }
 
 
         recyclerView = (RecyclerView) findViewById(R.id.reviews_recycler_view);
@@ -38,16 +67,9 @@ public class ServiceProviderProfile extends AppCompatActivity {
 
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
-        data = new ArrayList<ServiceProviderModel>();
-        for (int i = 0; i < MyData.nameArray.length; i++) {
-            data.add(new ServiceProviderModel(
-                    MyData.nameArray[i],
-                    MyData.locationArray[i],
-                    MyData.serviceTypeArray[i],
-                    MyData.id_[i],
-                    MyData.drawableArray[i]
-            ));
-        }
+
+
+
 
         removedItems = new ArrayList<Integer>();
 
