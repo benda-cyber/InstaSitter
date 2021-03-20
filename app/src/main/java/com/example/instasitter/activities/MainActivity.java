@@ -1,5 +1,6 @@
 package com.example.instasitter.activities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -33,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        recyclerView = (RecyclerView) findViewById(R.id.service_provider_reviews_recycler_view);
+        recyclerView = (RecyclerView) findViewById(R.id.profiles_recycler_view);
         recyclerView.setHasFixedSize(true);
 
         layoutManager = new LinearLayoutManager(this);
@@ -81,11 +82,12 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, LoginPage.class);
         startActivity(intent);
     }
+//
+//    public void goToServiceProvider(View view) {
+//        Button serviceProviderCard = (Button) view;
+//        Intent intent = new Intent(this, ServiceProviderProfile.class);
+//        startActivity(intent);
 
-    public void goToServiceProvider(View view) {
-        Button serviceProviderCard = (Button) view;
-        Intent intent = new Intent(this, ServiceProviderProfile.class);
-        startActivity(intent);
+//    }
 
-    }
 }

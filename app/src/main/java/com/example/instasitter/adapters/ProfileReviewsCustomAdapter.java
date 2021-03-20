@@ -63,8 +63,7 @@ public class ProfileReviewsCustomAdapter extends RecyclerView.Adapter<ProfileRev
         }
 
         @Override
-        public MyViewHolder onCreateViewHolder(ViewGroup parent,
-                                                                                                  int viewType) {
+        public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             View view = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.cards_layout, parent, false);
 
