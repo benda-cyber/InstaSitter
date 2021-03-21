@@ -12,6 +12,7 @@ import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Switch;
+import android.widget.Toast;
 
 import com.example.instasitter.R;
 import com.example.instasitter.classes.User;
@@ -75,7 +76,11 @@ public class ServiceProviderExtra extends AppCompatActivity implements View.OnCl
             @Override
             public void onClick(View v) {
                 fileUploader();
-
+                if(!isBabysitter.isChecked() && !isDogwalker.isChecked()){
+                    Toast.makeText(ServiceProviderExtra.this, "Please pick at least one service",
+                            Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 if(isBabysitter.isChecked()) {
                     user.setBabysitter(true);
                 }
