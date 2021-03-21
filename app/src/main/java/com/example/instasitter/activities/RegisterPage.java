@@ -196,14 +196,12 @@ public class RegisterPage extends AppCompatActivity {
 
     private boolean Validatepassword(){
         String val = password.getText().toString().trim();
-        String checkPassword = "^ + (?=\\S+$)";
+
 
         if(val.isEmpty()){
             password.setError("Field can not be empty");
             return false;
-        }else if (!val.matches(checkPassword)){
-            password.setError("Password should be with no white spaces");
-            return false;
+
         }
         else{
             password.setError(null);
@@ -215,14 +213,12 @@ public class RegisterPage extends AppCompatActivity {
 
     private boolean Validatephone(){
         String val = phone.getText().toString().trim();
-        String checkPassword = "^ + ";
+
 
         if(val.isEmpty()){
             phone.setError("Field can not be empty");
             return false;
-        }else if (!val.matches(checkPassword)){
-            phone.setError("number should be with no white spaces");
-            return false;
+
         }
         else{
             phone.setError(null);
