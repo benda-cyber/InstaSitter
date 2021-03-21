@@ -27,9 +27,9 @@ public class ServiceProviderExtra extends AppCompatActivity implements View.OnCl
     Button chooseProfilePicButton, chooseIdPicButton, registerButton;
     Uri profileImgUri;
     Uri idImgUri;
-    Uri showImageUri;
     StorageReference mStorageRef;
     String uid;
+    int flag =-1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,12 +47,14 @@ public class ServiceProviderExtra extends AppCompatActivity implements View.OnCl
         chooseProfilePicButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                flag = 0;
                 fileChooser();
             }
         });
         chooseIdPicButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                flag = 1;
                 fileChooser();
 
             }
@@ -92,7 +94,7 @@ public class ServiceProviderExtra extends AppCompatActivity implements View.OnCl
                 profilePicRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
                     public void onSuccess(Uri uri) {
-                        String profilePicUrl = String.valueOf(uri);
+//                        String profilePicUrl = String.valueOf(uri);
 //                        StoreLink(profilePicUrl);
                     }
                 });
@@ -128,10 +130,18 @@ public class ServiceProviderExtra extends AppCompatActivity implements View.OnCl
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == PICK_IMAGE && resultCode == RESULT_OK && data!=null && data.getData()!=null){
+            if(flag == 0){
+
+                profileImgUri = data.getData();
+                profilePicture.setImageURI(profileImgUri);
+            }
+            if(flag == 1){
+
+                idImgUri = data.getData();
+                idPicture.setImageURI(idImgUri);
+            }
 
 
-            Uri fileUri = data.getData();
-            profilePicture.setImageURI(fileUri);
 
 
         }
