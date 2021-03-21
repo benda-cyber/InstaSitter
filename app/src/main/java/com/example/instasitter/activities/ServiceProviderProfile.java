@@ -27,7 +27,7 @@ public class ServiceProviderProfile extends AppCompatActivity {
     public static View.OnTouchListener myOnClickListener;
     private static ArrayList<Integer> removedItems;
     ServiceProviderModel currentProfile;
-    Bundle extras;
+
     TextView textViewName;
     TextView textViewLocation;
     TextView textViewServiceType;
@@ -45,7 +45,7 @@ public class ServiceProviderProfile extends AppCompatActivity {
         textViewAbout = (TextView) findViewById(R.id.aboutInProfile);
         ratingBar = (RatingBar) findViewById(R.id.ratingBar);
         imageView = (ImageView) findViewById(R.id.profilePicture);
-        extras = getIntent().getExtras();
+
 
         if (getIntent().hasExtra("service_provider_profile")) {
             currentProfile = getIntent().getParcelableExtra("service_provider_profile");

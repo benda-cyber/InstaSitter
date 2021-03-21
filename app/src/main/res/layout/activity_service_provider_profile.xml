@@ -141,7 +141,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@drawable/buttonstule2"
+            android:background="@drawable/buttonstyle2"
             android:isIndicator="true"
             android:numStars="5"
             android:stepSize="0.1"
@@ -172,7 +172,7 @@
             android:id="@+id/reviews_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/buttonstule2" />
+            android:background="@drawable/buttonstyle2" />
     </LinearLayout>
 
 </LinearLayout>

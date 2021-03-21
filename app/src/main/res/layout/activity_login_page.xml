@@ -60,7 +60,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@drawable/buttonstule2"
+            android:background="@drawable/buttonstyle2"
             android:onClick="signIn"
             android:text="Login" />
 
@@ -69,7 +69,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@drawable/buttonstule2"
+            android:background="@drawable/buttonstyle2"
             android:onClick="toRegisterPage"
             android:text="Register" />
     </LinearLayout>

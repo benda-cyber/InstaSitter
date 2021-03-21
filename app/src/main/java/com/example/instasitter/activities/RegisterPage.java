@@ -81,19 +81,26 @@ public class RegisterPage extends AppCompatActivity {
 
                             uid = user.getUid();
 
-                            DatabaseReference myRef = database.getReference("users").child(uid);
 
-                            User u = new User(nameStr, familyNameStr, dateOfBirthStr, phoneStr, addressStr, emailStr,passwordStr);
-                            myRef.setValue(u);
+
+                            User u = new User(nameStr, familyNameStr, dateOfBirthStr, phoneStr, addressStr, emailStr, passwordStr);
+
 
 
                             if(isServiceProvider.isChecked())
                             {
+                                DatabaseReference myRef = database.getReference("service_providers").child(uid);
+                                myRef.setValue(u);
+
                                 Intent intentExtraPage = new Intent(RegisterPage.this, ServiceProviderExtra.class);
                                 intentExtraPage.putExtra("keyuid",uid);
                                 startActivity(intentExtraPage);
                             }
                             else {
+
+                                DatabaseReference myRef = database.getReference("users").child(uid);
+                                myRef.setValue(u);
+
                                 Toast.makeText(RegisterPage.this, "Registered successfully.",
                                         Toast.LENGTH_SHORT).show();
                                 Intent intentLogin = new Intent(RegisterPage.this, MainActivity.class);

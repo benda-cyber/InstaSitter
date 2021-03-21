@@ -27,34 +27,34 @@
 
 
         <ImageView
-            android:id="@+id/imagetoupload"
+            android:id="@+id/registerProfilePicture"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
             tools:srcCompat="@tools:sample/avatars" />
 
         <Button
-            android:id="@+id/Bphoto"
+            android:id="@+id/registerProfilePictureUploadBottun"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/buttonstule2"
+            android:background="@drawable/buttonstyle2"
             android:text="upload an updated photo of you" />
 
 
         <ImageView
-            android:id="@+id/imagetoupload2"
+            android:id="@+id/registerIdPicture"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
             tools:srcCompat="@tools:sample/avatars" />
 
         <Button
-            android:id="@+id/BIDphoto"
+            android:id="@+id/registerIdPictureUploadBottun"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/buttonstule2"
+            android:background="@drawable/buttonstyle2"
             android:text="upload an updated photo of your ID" />
 
         <TextView
@@ -91,11 +91,11 @@
         </LinearLayout>
 
         <Button
-            android:id="@+id/regreg"
+            android:id="@+id/serviceProviderRegisterButton"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/buttonstule2"
+            android:background="@drawable/buttonstyle2"
             android:gravity="center"
             android:text="Register" />
 
