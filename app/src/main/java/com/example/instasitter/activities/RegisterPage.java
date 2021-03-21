@@ -127,10 +127,6 @@ public class RegisterPage extends AppCompatActivity {
     }
 
 
-    public void funcSwitch(View view){
-
-    }
-
 
     private boolean Validatename(){
         String val = name.getText().toString().trim();
