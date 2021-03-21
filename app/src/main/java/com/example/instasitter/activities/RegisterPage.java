@@ -35,6 +35,7 @@ public class RegisterPage extends AppCompatActivity {
     FirebaseDatabase database;
     Switch isServiceProvider;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +53,10 @@ public class RegisterPage extends AppCompatActivity {
 //        SwitchCompat.setOnCheckedChangeListener((buttonView, isChecked)
 
 
+
+
+
+
     }
 
     public void cancelRegistration(View view) {
@@ -61,6 +66,9 @@ public class RegisterPage extends AppCompatActivity {
 
 
     public void createAccount(View view) {
+        if(!Validatename() | !ValidatefamilyName() | !Validateaddress() | !Validateemail() | !Validatepassword() | !Validatephone()){
+            return;
+        }
 
         String nameStr = name.getText().toString();
         String familyNameStr = familyName.getText().toString();
@@ -124,6 +132,107 @@ public class RegisterPage extends AppCompatActivity {
     }
 
 
+    private boolean Validatename(){
+        String val = name.getText().toString().trim();
+
+        if(val.isEmpty()){
+            name.setError("Field can not be empty");
+            return false;
+        }
+        else{
+            name.setError(null);
+            return true;
+        }
+
+
+    }
+
+    private boolean ValidatefamilyName(){
+        String val = familyName.getText().toString().trim();
+
+        if(val.isEmpty()){
+            familyName.setError("Field can not be empty");
+            return false;
+        }
+        else{
+            familyName.setError(null);
+            return true;
+        }
+
+
+    }
+
+    private boolean Validateaddress(){
+        String val = address.getText().toString().trim();
+
+        if(val.isEmpty()){
+            address.setError("Field can not be empty");
+            return false;
+        }
+        else{
+            address.setError(null);
+            return true;
+        }
+
+
+    }
+
+    private boolean Validateemail(){
+        String val = email.getText().toString().trim();
+        String checkspaces = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+
+        if(val.isEmpty()){
+            email.setError("Field can not be empty");
+            return false;
+        }else if (!val.matches(checkspaces)){
+            email.setError("Invalid Email!");
+            return false;
+        }
+        else{
+            email.setError(null);
+            return true;
+        }
+
+
+    }
+
+    private boolean Validatepassword(){
+        String val = password.getText().toString().trim();
+        String checkPassword = "^ + (?=\\S+$)";
+
+        if(val.isEmpty()){
+            password.setError("Field can not be empty");
+            return false;
+        }else if (!val.matches(checkPassword)){
+            password.setError("Password should be with no white spaces");
+            return false;
+        }
+        else{
+            password.setError(null);
+            return true;
+        }
+
+
+    }
+
+    private boolean Validatephone(){
+        String val = phone.getText().toString().trim();
+        String checkPassword = "^ + ";
+
+        if(val.isEmpty()){
+            phone.setError("Field can not be empty");
+            return false;
+        }else if (!val.matches(checkPassword)){
+            phone.setError("number should be with no white spaces");
+            return false;
+        }
+        else{
+            phone.setError(null);
+            return true;
+        }
+
+
+    }
 
 
 
