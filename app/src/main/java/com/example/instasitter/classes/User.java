@@ -1,6 +1,9 @@
 package com.example.instasitter.classes;
 
-public class User {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class User implements Parcelable {
 
     private String  name;
 
@@ -16,6 +19,10 @@ public class User {
 
     private String  password;
 
+    private boolean dogwalker;
+
+    private boolean babysitter;
+
 
     public User(String name, String familyName, String dateOfBirth, String phone, String address, String email, String password){
 
@@ -26,8 +33,34 @@ public class User {
         this.address=address;
         this.email=email;
         this.password=password;
+        this.babysitter=false;
+        this.dogwalker=false;
 
     }
+
+    protected User(Parcel in) {
+        name = in.readString();
+        familyName = in.readString();
+        dateOfBirth = in.readString();
+        phone = in.readString();
+        address = in.readString();
+        email = in.readString();
+        password = in.readString();
+    }
+
+    public static final Creator<User> CREATOR = new Creator<User>() {
+        @Override
+        public User createFromParcel(Parcel in) {
+            return new User(in);
+        }
+
+        @Override
+        public User[] newArray(int size) {
+            return new User[size];
+        }
+    };
+
+
     public String getName() {
         return name;
     }
@@ -80,5 +113,35 @@ public class User {
         this.password = password;
     }
 
+    public boolean isBabysitter() {
+        return babysitter;
+    }
 
+    public void setBabysitter(boolean babysitter) {
+        this.babysitter = babysitter;
+    }
+
+    public boolean isDogwalker() {
+        return dogwalker;
+    }
+
+    public void setDogwalker(boolean dogwalker) {
+        this.dogwalker = dogwalker;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(name);
+        dest.writeString(familyName);
+        dest.writeString(dateOfBirth);
+        dest.writeString(phone);
+        dest.writeString(address);
+        dest.writeString(email);
+        dest.writeString(password);
+    }
 }

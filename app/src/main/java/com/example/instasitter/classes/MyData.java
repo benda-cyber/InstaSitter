@@ -8,7 +8,7 @@ import com.example.instasitter.R;
 public class MyData implements Parcelable {
      public static String[] nameArray = {"Cupcake", "Donut", "Eclair", "Froyo", "Gingerbread", "Honeycomb", "Ice Cream Sandwich","JellyBean", "Kitkat", "Lollipop", "Marshmallow"};
      public static String[] locationArray = {"אילת", "באר שבע", "תל אביב", "ראשון לציון", "חולון", "ראשון לציון, חולון, בת ים", "רחובות", "נתניה", "באר יעקב", "ראש העין","תל אביב והסביבה"};
-     public static String[] serviceTypeArray = {"Cupcake walker", "Donut sitter", "Eclair sitter", "Froyo walker", "Gingerbread walker", "Honeycomb sitter", "Ice Cream Sandwich walker","JellyBean walker", "Kitkat sitter", "Lollipop walker", "Marshmallow sitter"};
+     public static String[] serviceTypeArray = {"Dog Walker", "Bsbysitter", "Bsbysitter, Dog Walker", "Dog Walker", "Dog Walker", "Bsbysitter", "Dog Walker","Bsbysitter", "Bsbysitter, Dog Walker", "Bsbysitter", "Dog Walker"};
 
      public static Integer[] drawableArray = {R.drawable.cupcake, R.drawable.donut, R.drawable.eclair,
             R.drawable.froyo, R.drawable.gingerbread, R.drawable.honeycomb, R.drawable.ics,

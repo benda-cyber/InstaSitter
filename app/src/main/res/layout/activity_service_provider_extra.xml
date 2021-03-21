@@ -74,20 +74,20 @@
             android:orientation="horizontal">
 
             <Switch
-                android:id="@+id/DogWalker"
+                android:id="@+id/dogwalker"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="DogWalker" />
+                android:text="Dog Walker" />
 
             <Switch
-                android:id="@+id/BabySiter"
+                android:id="@+id/babysitter"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="BabySiter" />
+                android:text="Babysitter" />
         </LinearLayout>
 
         <Button

@@ -18,7 +18,13 @@ import com.example.instasitter.adapters.CardCustomAdapter;
 import com.example.instasitter.R;
 import com.example.instasitter.classes.ServiceProviderModel;
 import com.example.instasitter.classes.MyData;
+import com.example.instasitter.classes.User;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -31,7 +37,8 @@ public class MainActivity extends AppCompatActivity implements CardCustomAdapter
     public static View.OnTouchListener myOnClickListener;
     private static ArrayList<Integer> removedItems;
     private static final String TAG = "MainActivity";
-
+    DatabaseReference myRef;
+    FirebaseDatabase database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,14 +54,15 @@ public class MainActivity extends AppCompatActivity implements CardCustomAdapter
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
         data = new ArrayList<ServiceProviderModel>();
-            for (int i = 0; i < MyData.nameArray.length; i++) {
-                data.add(new ServiceProviderModel(
-                        MyData.nameArray[i],
-                        MyData.locationArray[i],
-                        MyData.serviceTypeArray[i],
-                        MyData.id_[i],
-                        MyData.drawableArray[i]
-                ));
+
+        for (int i = 0; i < MyData.nameArray.length; i++) {
+            data.add(new ServiceProviderModel(
+                    MyData.nameArray[i],
+                    MyData.locationArray[i],
+                    MyData.serviceTypeArray[i],
+                    MyData.id_[i],
+                    MyData.drawableArray[i]
+            ));
         }
 
         removedItems = new ArrayList<Integer>();
@@ -62,8 +70,9 @@ public class MainActivity extends AppCompatActivity implements CardCustomAdapter
         adapter = new CardCustomAdapter(data,this);
         recyclerView.setAdapter(adapter);
 
-
     }
+
+
 
 //    @Override
 //    public boolean onCreateOptionsMenu(Menu menu) {

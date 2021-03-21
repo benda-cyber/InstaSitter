@@ -11,8 +11,10 @@ import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Switch;
 
 import com.example.instasitter.R;
+import com.example.instasitter.classes.User;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -29,7 +31,12 @@ public class ServiceProviderExtra extends AppCompatActivity implements View.OnCl
     Uri idImgUri;
     StorageReference mStorageRef;
     String uid;
+    Switch isDogwalker;
+    Switch isBabysitter;
+    User user;
     int flag =-1;
+    FirebaseDatabase database;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +50,10 @@ public class ServiceProviderExtra extends AppCompatActivity implements View.OnCl
         chooseProfilePicButton = (Button) findViewById(R.id.registerProfilePictureUploadBottun);
         chooseIdPicButton = (Button) findViewById(R.id.registerIdPictureUploadBottun);
         registerButton = (Button) findViewById(R.id.serviceProviderRegisterButton);
+
+        isDogwalker = (Switch) findViewById(R.id.dogwalker);
+        isBabysitter = (Switch) findViewById(R.id.babysitter);
+
 
         chooseProfilePicButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,6 +75,20 @@ public class ServiceProviderExtra extends AppCompatActivity implements View.OnCl
             @Override
             public void onClick(View v) {
                 fileUploader();
+
+                if(isBabysitter.isChecked()) {
+                    user.setBabysitter(true);
+                }
+
+                if(isDogwalker.isChecked()) {
+                    user.setDogwalker(true);
+                }
+
+                DatabaseReference myRef = database.getReference("service_providers").child(uid);
+                myRef.setValue(user);
+
+                Intent intent = new Intent(ServiceProviderExtra.this, MainActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -71,6 +96,11 @@ public class ServiceProviderExtra extends AppCompatActivity implements View.OnCl
 
             uid = getIntent().getStringExtra("keyuid");
 
+        }
+        if (getIntent().hasExtra("user")){
+
+            Intent intent = getIntent();
+            User user  = (User) intent.getSerializableExtra("user");
         }
     }
 

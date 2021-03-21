@@ -17,6 +17,7 @@ import com.example.instasitter.R;
 import com.example.instasitter.activities.ServiceProviderProfile;
 import com.example.instasitter.activities.MainActivity;
 import com.example.instasitter.classes.ServiceProviderModel;
+import com.example.instasitter.classes.User;
 
 import java.util.ArrayList;
 

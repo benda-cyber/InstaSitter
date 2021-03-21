@@ -66,7 +66,9 @@ public class RegisterPage extends AppCompatActivity {
 
 
     public void createAccount(View view) {
-        if(!Validatename() | !ValidatefamilyName() | !Validateaddress() | !Validateemail() | !Validatepassword() | !Validatephone() | !Validatedateofbirth()){
+        if(!Validatename() | !ValidatefamilyName() | !Validateaddress() | !Validateemail() | !Validatepassword() | !Validatephone()){
+            Toast.makeText(RegisterPage.this, "Registration failed.",
+                    Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -143,21 +145,6 @@ public class RegisterPage extends AppCompatActivity {
 
     }
 
-    private boolean Validatedateofbirth(){
-        String val = dateOfBirth.getText().toString().trim();
-
-        if(val.isEmpty()){
-            dateOfBirth.setError("Field can not be empty");
-            return false;
-        }
-        else{
-            dateOfBirth.setError(null);
-            return true;
-        }
-
-
-    }
-
     private boolean ValidatefamilyName(){
         String val = familyName.getText().toString().trim();
 
@@ -209,13 +196,15 @@ public class RegisterPage extends AppCompatActivity {
 
     private boolean Validatepassword(){
         String val = password.getText().toString().trim();
-
+        String checkPassword = "^ + (?=\\S+$)";
 
         if(val.isEmpty()){
             password.setError("Field can not be empty");
             return false;
+        }else if (!val.matches(checkPassword)){
+            password.setError("Password should be with no white spaces");
+            return false;
         }
-
         else{
             password.setError(null);
             return true;
@@ -226,10 +215,13 @@ public class RegisterPage extends AppCompatActivity {
 
     private boolean Validatephone(){
         String val = phone.getText().toString().trim();
-
+        String checkPassword = "^ + ";
 
         if(val.isEmpty()){
             phone.setError("Field can not be empty");
+            return false;
+        }else if (!val.matches(checkPassword)){
+            phone.setError("number should be with no white spaces");
             return false;
         }
         else{
