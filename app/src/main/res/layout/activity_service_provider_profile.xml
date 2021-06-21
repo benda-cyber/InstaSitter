@@ -28,14 +28,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Name : " />
+                android:text="@string/name" />
 
             <TextView
                 android:id="@+id/textView6"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Service Type : " />
+                android:text="@string/service_type" />
         </LinearLayout>
 
         <LinearLayout
@@ -49,14 +49,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Name" />
+                android:text="@string/name" />
 
             <TextView
                 android:id="@+id/serviceType"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Service Type" />
+                android:text="@string/service_type" />
         </LinearLayout>
 
     </LinearLayout>
@@ -77,14 +77,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Location :" />
+                android:text="@string/location" />
 
             <TextView
                 android:id="@+id/serviceProviderLocationInProfile"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Location" />
+                android:text="@string/location" />
         </LinearLayout>
 
         <ImageView
@@ -111,14 +111,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="About : " />
+                android:text="@string/about" />
 
             <TextView
                 android:id="@+id/aboutInProfile"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="About Description" />
+                android:text="@string/about_description" />
         </LinearLayout>
 
     </LinearLayout>
@@ -134,7 +134,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Rating" />
+            android:text="@string/rating" />
 
         <RatingBar
             android:id="@+id/ratingBar"
@@ -159,7 +159,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Written Reviews" />
+            android:text="@string/written_reviews" />
     </LinearLayout>
 
     <LinearLayout

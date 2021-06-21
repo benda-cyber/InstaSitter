@@ -25,7 +25,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Name"
+            android:hint="@string/name"
             android:inputType="textPersonName" />
     </LinearLayout>
 
@@ -40,7 +40,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Family Name"
+            android:hint="@string/family_name"
             android:inputType="textPersonName" />
     </LinearLayout>
 
@@ -55,7 +55,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Date of Birth dd/mm/yyyy"
+            android:hint="@string/date_of_birth"
             android:inputType="date" />
     </LinearLayout>
 
@@ -67,11 +67,10 @@
 
         <EditText
             android:id="@+id/registerPhone"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:ems="10"
-            android:hint="Phone Number"
+            android:hint="@string/phone_number"
             android:inputType="phone" />
     </LinearLayout>
 
@@ -83,11 +82,11 @@
 
         <EditText
             android:id="@+id/registerAddress"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+
             android:ems="10"
-            android:hint="Full Address"
+            android:hint="@string/address"
             android:inputType="textPostalAddress" />
     </LinearLayout>
 
@@ -102,7 +101,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Email Address"
+            android:hint="@string/email"
             android:inputType="textEmailAddress" />
     </LinearLayout>
 
@@ -117,7 +116,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Password"
+            android:hint="@string/password"
             android:inputType="textPassword" />
     </LinearLayout>
 
@@ -138,8 +137,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Service provider"
-            android:textColor="#070707"
+            android:text="@string/service_provider"
+            android:textColor="@color/black"
             android:textColorHighlight="@color/teal_700"
             android:textColorHint="@color/teal_700" />
     </LinearLayout>
@@ -156,7 +155,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/buttonstyle2"
             android:onClick="createAccount"
-            android:text="Register" />
+            android:text="@string/register" />
     </LinearLayout>
 
     <LinearLayout

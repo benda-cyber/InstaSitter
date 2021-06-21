@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="name_error">הכנס שם תקין</string>
+    <string name="family_name_error">הכנס שם משפחה תקין</string>
+    <string name="email_error">הכנס אימייל תקין</string>
+    <string name="phone_error">הכנס מספר טלפון תקין</string>
+    <string name="date_error">הכנס תאריך תקין</string>
+    <string name="address_error">הכנס כתובת תקינה</string>
+    <string name="password_error">הכנס סיסמא תקינה</string>
+
+    <string name="register">הרשם</string>
+    <string name="name">שם</string>
+    <string name="family_name">שם משפחה</string>
+    <string name="password">סיסמא</string>
+    <string name="email">אימייל</string>
+    <string name="phone_number">מספר טלפון</string>
+    <string name="date_of_birth">תאריך לידה</string>
+    <string name="address">כתובת</string>
+    <string name="service_provider">נותן שירות</string>
+    <string name="login">התחבר</string>
+    <string name="service_provider_title_txt">רק עוד כמה צעדים</string>
+    <string name="upload_photo">העלה תמונה עדכנית שלך</string>
+    <string name="upload_photo_id">העלה תמונה עדכנית של תעודת הזהות שלך</string>
+    <string name="what_service">מה השירות אותו תרצה לספק?</string>
+    <string name="dog_walker">מוליך כלבים</string>
+    <string name="babysitter">בייביסיטר</string>
+    <string name="service_type">סוגי שירות</string>
+    <string name="location">מיקום</string>
+    <string name="about">על עצמי</string>
+    <string name="about_description">תוכן על עצמי</string>
+    <string name="rating">דירוג</string>
+    <string name="written_reviews">ביקורות</string>
+
+</resources>

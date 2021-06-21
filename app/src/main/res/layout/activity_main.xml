@@ -43,7 +43,7 @@
             android:layout_weight="1"
             android:background="@drawable/buttonstyle"
             android:onClick="toRegisterPage"
-            android:text="Register" />
+            android:text="@string/register" />
 
         <Button
             android:id="@+id/toLoginFromMainButton"
@@ -52,7 +52,7 @@
             android:layout_weight="1"
             android:background="@drawable/buttonstyle"
             android:onClick="toLoginPage"
-            android:text="Login" />
+            android:text="@string/login" />
     </LinearLayout>
 
 </LinearLayout>

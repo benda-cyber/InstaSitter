@@ -22,7 +22,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="just a few more steps"
+            android:text="@string/service_provider_title_txt"
             android:textSize="36sp" />
 
 
@@ -39,7 +39,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@drawable/buttonstyle2"
-            android:text="upload an updated photo of you" />
+            android:text="@string/upload_photo" />
 
 
         <ImageView
@@ -55,7 +55,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@drawable/buttonstyle2"
-            android:text="upload an updated photo of your ID" />
+            android:text="@string/upload_photo_id" />
 
         <TextView
             android:id="@+id/kindofser"
@@ -63,7 +63,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="what kind of service are you providing?"
+            android:text="@string/what_service"
             android:textColor="?attr/textColorAlertDialogListItem"
             android:textSize="18sp" />
 
@@ -79,7 +79,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Dog Walker" />
+                android:text="@string/dog_walker" />
 
             <Switch
                 android:id="@+id/babysitter"
@@ -87,7 +87,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Babysitter" />
+                android:text="@string/babysitter" />
         </LinearLayout>
 
         <Button
@@ -97,7 +97,7 @@
             android:layout_weight="1"
             android:background="@drawable/buttonstyle2"
             android:gravity="center"
-            android:text="Register" />
+            android:text="@string/register" />
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#75B8B2"
+    android:background="@drawable/pagestyle"
     android:orientation="vertical"
     android:paddingLeft="16dp"
     android:paddingTop="16dp"
@@ -24,9 +24,8 @@
             android:id="@+id/loginEmailAddress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:ems="10"
-            android:hint="Email Address"
+            android:hint="@string/email"
             android:inputType="textEmailAddress" />
     </LinearLayout>
 
@@ -41,9 +40,8 @@
             android:id="@+id/loginPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:ems="10"
-            android:hint="Password"
+            android:hint="@string/password"
             android:inputType="textPassword" />
 
     </LinearLayout>
@@ -62,7 +60,7 @@
             android:layout_weight="1"
             android:background="@drawable/buttonstyle2"
             android:onClick="signIn"
-            android:text="Login" />
+            android:text="@string/login" />
 
         <Button
             android:id="@+id/toRegisterFromLoginButton"
@@ -71,7 +69,7 @@
             android:layout_weight="1"
             android:background="@drawable/buttonstyle2"
             android:onClick="toRegisterPage"
-            android:text="Register" />
+            android:text="@string/register" />
     </LinearLayout>
 
     <LinearLayout

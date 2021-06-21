@@ -44,7 +44,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="10dp"
-                    android:text="Service provider name"
+                    android:text="@string/name"
                     android:textAppearance="?android:attr/textAppearanceLarge" />
 
                 <TextView
@@ -54,7 +54,7 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="10dp"
 
-                    android:text="Service provider location"
+                    android:text="@string/location"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
                 <TextView
@@ -64,7 +64,7 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="10dp"
                     android:layout_weight="0.1"
-                    android:text="Service Type"
+                    android:text="@string/service_type"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
             </LinearLayout>
