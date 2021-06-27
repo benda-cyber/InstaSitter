@@ -32,5 +32,6 @@
     <string name="about_description">About Description</string>
     <string name="rating">Rating</string>
     <string name="written_reviews">Written Reviews</string>
+    <string name="id_number">ID number</string>
 
 </resources>

@@ -3,6 +3,7 @@ package com.example.instasitter.activities;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
@@ -10,11 +11,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.Toast;
 
 import com.example.instasitter.R;
+import com.example.instasitter.classes.ServiceProvider;
 import com.example.instasitter.classes.User;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
@@ -30,11 +33,14 @@ public class ServiceProviderExtra extends AppCompatActivity implements View.OnCl
     Button chooseProfilePicButton, chooseIdPicButton, registerButton;
     Uri profileImgUri;
     Uri idImgUri;
-    StorageReference mStorageRef;
+    FirebaseStorage storage;
+    StorageReference storageRef;
     String uid;
+    EditText idNum;
     Switch isDogwalker;
     Switch isBabysitter;
     User user;
+    ServiceProvider serviceUser;
     int flag =-1;
     FirebaseDatabase database;
 
@@ -43,7 +49,9 @@ public class ServiceProviderExtra extends AppCompatActivity implements View.OnCl
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_service_provider_extra);
 
-        mStorageRef = FirebaseStorage.getInstance().getReference("Images");
+        storage = FirebaseStorage.getInstance();
+        database = FirebaseDatabase.getInstance();
+        storageRef = storage.getReference();
 
         profilePicture = (ImageView) findViewById(R.id.registerProfilePicture);
         idPicture = (ImageView) findViewById(R.id.registerIdPicture);
@@ -51,11 +59,22 @@ public class ServiceProviderExtra extends AppCompatActivity implements View.OnCl
         chooseProfilePicButton = (Button) findViewById(R.id.registerProfilePictureUploadBottun);
         chooseIdPicButton = (Button) findViewById(R.id.registerIdPictureUploadBottun);
         registerButton = (Button) findViewById(R.id.serviceProviderRegisterButton);
-
+        idNum = findViewById(R.id.registerIdNumber);
         isDogwalker = (Switch) findViewById(R.id.dogwalker);
         isBabysitter = (Switch) findViewById(R.id.babysitter);
 
+        if (getIntent().hasExtra("keyuid")) {
 
+            uid = getIntent().getStringExtra("keyuid");
+
+        }
+        if (getIntent().hasExtra("keyuser")){
+
+            Intent intent = getIntent();
+            user  = (User) intent.getSerializableExtra("keyuser");
+            serviceUser = new ServiceProvider(user);
+
+        }
         chooseProfilePicButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -75,38 +94,40 @@ public class ServiceProviderExtra extends AppCompatActivity implements View.OnCl
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                fileUploader();
+
+                if((idNum!=null) && (idNum.length()==9)){
+                    serviceUser.setIdNum(idNum.getText().toString());
+
+                }
+                else{
+                    Toast.makeText(ServiceProviderExtra.this, "Please enter a valid 9 digit ID number",
+                            Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 if(!isBabysitter.isChecked() && !isDogwalker.isChecked()){
                     Toast.makeText(ServiceProviderExtra.this, "Please pick at least one service",
                             Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if(isBabysitter.isChecked()) {
-                    user.setBabysitter(true);
+                    serviceUser.setBabysitter(true);
                 }
 
                 if(isDogwalker.isChecked()) {
-                    user.setDogwalker(true);
+                    serviceUser.setDogwalker(true);
                 }
-
+                fileUploader();
+         
                 DatabaseReference myRef = database.getReference("service_providers").child(uid);
-                myRef.setValue(user);
+                myRef.setValue(serviceUser);
 
                 Intent intent = new Intent(ServiceProviderExtra.this, MainActivity.class);
+                Toast.makeText(ServiceProviderExtra.this, "Registration Successful",
+                        Toast.LENGTH_SHORT).show();
                 startActivity(intent);
             }
         });
 
-        if (getIntent().hasExtra("keyuid")) {
-
-            uid = getIntent().getStringExtra("keyuid");
-
-        }
-        if (getIntent().hasExtra("user")){
-
-            Intent intent = getIntent();
-            User user  = (User) intent.getSerializableExtra("user");
-        }
     }
 
     private String getExtension(Uri uri){
@@ -119,9 +140,12 @@ public class ServiceProviderExtra extends AppCompatActivity implements View.OnCl
 
     private void fileUploader(){
 
+        ProgressDialog pd = new ProgressDialog(this);
+        pd.setMessage("Uploading Images");
+        pd.show();
 //        StorageReference storageReference = mStorageRef.child(uid).child();
-        StorageReference profilePicRef = mStorageRef.child(uid).child("profilePic." + getExtension(profileImgUri));
-        StorageReference idPicRef = mStorageRef.child(uid).child("idPic." + getExtension(idImgUri));
+        StorageReference profilePicRef = storageRef.child(uid).child("profile_picture." + getExtension(profileImgUri));
+        StorageReference idPicRef = storageRef.child(uid).child("id_picture." + getExtension(idImgUri));
 
         profilePicRef.putFile(profileImgUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
@@ -169,11 +193,13 @@ public class ServiceProviderExtra extends AppCompatActivity implements View.OnCl
 
                 profileImgUri = data.getData();
                 profilePicture.setImageURI(profileImgUri);
+
             }
             if(flag == 1){
 
                 idImgUri = data.getData();
                 idPicture.setImageURI(idImgUri);
+
             }
 
 
@@ -181,6 +207,7 @@ public class ServiceProviderExtra extends AppCompatActivity implements View.OnCl
 
         }
     }
+
 
     @Override
     public void onClick(View v) {

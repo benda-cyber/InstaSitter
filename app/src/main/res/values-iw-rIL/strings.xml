@@ -30,5 +30,6 @@
     <string name="about_description">תוכן על עצמי</string>
     <string name="rating">דירוג</string>
     <string name="written_reviews">ביקורות</string>
+    <string name="id_number">מספר ת.ז</string>
 
 </resources>
