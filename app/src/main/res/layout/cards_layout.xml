@@ -12,7 +12,7 @@
         android:id="@+id/card_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        card_view:cardCornerRadius="10dp"
+        card_view:cardCornerRadius="17dp"
         card_view:cardElevation="5dp"
         card_view:cardUseCompatPadding="true">
 
@@ -20,7 +20,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/cardstyle"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:id="@+id/linear_layout">
 
             <ImageView
                 android:id="@+id/serviceProviderPhoto"

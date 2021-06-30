@@ -21,8 +21,7 @@
     <string name="service_provider">Service Provider</string>
     <string name="login">Login</string>
     <string name="service_provider_title_txt">Just a few more steps</string>
-    <string name="upload_photo">Upload an updated photo of you</string>
-    <string name="upload_photo_id">Upload an updated photo of your ID</string>
+    <string name="upload_photos">Upload pictures</string>
     <string name="what_service">What kind of service are you providing?</string>
     <string name="dog_walker">Dog Walker</string>
     <string name="babysitter">Babysitter</string>
@@ -32,5 +31,9 @@
     <string name="about_description">About Description</string>
     <string name="rating">Rating</string>
     <string name="written_reviews">Written Reviews</string>
+    <string name="id_number">ID number</string>
+    <string name="choose_photo">Choose a profile picture</string>
+    <string name="choose_photo_id">Choose an ID picture</string>
+    <string name="back">Back</string>
 
 </resources>

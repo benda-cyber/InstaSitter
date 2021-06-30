@@ -19,8 +19,7 @@
     <string name="service_provider">נותן שירות</string>
     <string name="login">התחבר</string>
     <string name="service_provider_title_txt">רק עוד כמה צעדים</string>
-    <string name="upload_photo">העלה תמונה עדכנית שלך</string>
-    <string name="upload_photo_id">העלה תמונה עדכנית של תעודת הזהות שלך</string>
+    <string name="upload_photos">העלה את התמונות</string>
     <string name="what_service">מה השירות אותו תרצה לספק?</string>
     <string name="dog_walker">מוליך כלבים</string>
     <string name="babysitter">בייביסיטר</string>
@@ -30,5 +29,9 @@
     <string name="about_description">תוכן על עצמי</string>
     <string name="rating">דירוג</string>
     <string name="written_reviews">ביקורות</string>
+    <string name="id_number">מספר ת.ז</string>
+    <string name="choose_photo">בחר תמונת פרופיל</string>
+    <string name="choose_photo_id">בחר תמונה של ת.ז שלך</string>
+    <string name="back">חזור</string>
 
 </resources>

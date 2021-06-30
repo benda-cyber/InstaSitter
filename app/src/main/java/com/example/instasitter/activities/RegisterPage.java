@@ -50,12 +50,6 @@ public class RegisterPage extends AppCompatActivity {
         password = findViewById(R.id.registerPassword);
         database = FirebaseDatabase.getInstance();
         isServiceProvider = (Switch) findViewById(R.id.serviceProvider);
-//        SwitchCompat.setOnCheckedChangeListener((buttonView, isChecked)
-
-
-
-
-
 
     }
 
@@ -63,7 +57,6 @@ public class RegisterPage extends AppCompatActivity {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
-
 
     public void createAccount(View view) {
         if(!Validatename() | !ValidatefamilyName() | !Validateaddress() | !Validateemail() | !Validatepassword() | !Validatephone()){
@@ -80,30 +73,27 @@ public class RegisterPage extends AppCompatActivity {
         String emailStr = email.getText().toString();
         String passwordStr = password.getText().toString();
 
-
         mAuth.createUserWithEmailAndPassword(emailStr, passwordStr)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
+
                             FirebaseUser user = mAuth.getCurrentUser();
 
                             uid = user.getUid();
 
-
-
                             User u = new User(nameStr, familyNameStr, dateOfBirthStr, phoneStr, addressStr, emailStr, passwordStr);
-
-
 
                             if(isServiceProvider.isChecked())
                             {
-                                DatabaseReference myRef = database.getReference("service_providers").child(uid);
-                                myRef.setValue(u);
+//                                DatabaseReference myRef = database.getReference("service_providers").child(uid);
+//                                myRef.setValue(u);
 
                                 Intent intentExtraPage = new Intent(RegisterPage.this, ServiceProviderExtra.class);
                                 intentExtraPage.putExtra("keyuid",uid);
+                                intentExtraPage.putExtra("keyuser",u);
+
                                 startActivity(intentExtraPage);
                             }
                             else {
@@ -118,7 +108,7 @@ public class RegisterPage extends AppCompatActivity {
                                 startActivity(intentLogin);
                             }
                         } else {
-                            // If sign in fails, display a message to the user.
+
                             Toast.makeText(RegisterPage.this, "Registration failed.",
                                     Toast.LENGTH_SHORT).show();
                         }
