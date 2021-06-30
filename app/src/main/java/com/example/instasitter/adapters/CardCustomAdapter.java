@@ -2,10 +2,12 @@ package com.example.instasitter.adapters;
 
 import android.content.ClipData.Item;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -15,6 +17,8 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder;
 
 import com.bumptech.glide.Glide;
 import com.example.instasitter.R;
+import com.example.instasitter.activities.MainActivity;
+import com.example.instasitter.activities.ServiceProviderProfile;
 import com.example.instasitter.classes.ServiceProvider;
 
 import java.util.ArrayList;
@@ -24,7 +28,7 @@ public class CardCustomAdapter extends RecyclerView.Adapter<CardCustomAdapter.My
     private static final String TAG = "CardCustomAdapter";
     private Context mContext;
     private ArrayList<ServiceProvider> dataSet;
-    private OnCardListener mOnCardListener;
+//    private OnCardListener mOnCardListener;
 
     public CardCustomAdapter(Context mContext, ArrayList<ServiceProvider> data) {
         this.dataSet = data;
@@ -37,7 +41,7 @@ public class CardCustomAdapter extends RecyclerView.Adapter<CardCustomAdapter.My
 
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cards_layout, parent, false);
 
-        MyViewHolder myViewHolder = new MyViewHolder(view,mOnCardListener);
+        MyViewHolder myViewHolder = new MyViewHolder(view);
 
         return myViewHolder;
     }
@@ -50,15 +54,28 @@ public class CardCustomAdapter extends RecyclerView.Adapter<CardCustomAdapter.My
         TextView textViewServiceType = holder.textViewServiceType;
         ImageView imageView = holder.imageViewIcon;
         CardView cardView = holder.cardView;
+        LinearLayout linearLayout = holder.linearLayout;
 
         textViewName.setText(dataSet.get(listPosition).getName());
         textViewLocation.setText(dataSet.get(listPosition).getAddress());
         textViewServiceType.setText(dataSet.get(listPosition).getServices());
 
+
         Glide.with(mContext).load(dataSet.get(listPosition).getProfilePic()).into(imageView);
+
+        linearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(mContext, ServiceProviderProfile.class);
+                intent.putExtra("service_provider_profile", dataSet.get(listPosition));
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                mContext.startActivity(intent);
+            }
+        });
     }
 
-    public class MyViewHolder extends ViewHolder implements View.OnClickListener {
+    public class MyViewHolder extends ViewHolder {
 
         CardView cardView;
         TextView textViewName;
@@ -67,9 +84,10 @@ public class CardCustomAdapter extends RecyclerView.Adapter<CardCustomAdapter.My
         ImageView imageViewIcon;
         View itemView;
         Item currentItem;
-        OnCardListener onCardListener;
+//        OnCardListener onCardListener;
+        LinearLayout linearLayout;
 
-        public MyViewHolder(@NonNull View itemView, OnCardListener onCardListener) {
+        public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
             this.cardView = (CardView) itemView.findViewById(R.id.card_view);
@@ -78,26 +96,22 @@ public class CardCustomAdapter extends RecyclerView.Adapter<CardCustomAdapter.My
             this.textViewServiceType = (TextView) itemView.findViewById(R.id.serviceProviderServiceType);
             this.imageViewIcon = (ImageView) itemView.findViewById(R.id.serviceProviderPhoto);
             this.itemView = itemView;
-            this.onCardListener = onCardListener;
+//            this.onCardListener = onCardListener;
+            this.linearLayout = itemView.findViewById(R.id.linear_layout);
 
-            itemView.setOnClickListener(this);
+//            itemView.setOnClickListener(this);
 
-        }
-
-        @Override
-        public void onClick(View v) {
-            onCardListener.onCardClick(getAdapterPosition());
         }
 
 
     }
 
 
-    public interface OnCardListener{
-
-        void onCardClick(int position);
-
-    }
+//    public interface OnCardListener{
+//
+//        void onCardClick(MyViewHolder profile);
+//
+//    }
 
 
 

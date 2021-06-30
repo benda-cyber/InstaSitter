@@ -32,5 +32,6 @@
     <string name="id_number">מספר ת.ז</string>
     <string name="choose_photo">בחר תמונת פרופיל</string>
     <string name="choose_photo_id">בחר תמונה של ת.ז שלך</string>
+    <string name="back">חזור</string>
 
 </resources>

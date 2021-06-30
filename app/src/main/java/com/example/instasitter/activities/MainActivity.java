@@ -24,10 +24,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class MainActivity extends AppCompatActivity implements CardCustomAdapter.OnCardListener,FloatingActionButton.OnClickListener{
+public class MainActivity extends AppCompatActivity implements FloatingActionButton.OnClickListener{
 
     private CardCustomAdapter adapter;
     private RecyclerView.LayoutManager layoutManager;
@@ -77,9 +78,12 @@ public class MainActivity extends AppCompatActivity implements CardCustomAdapter
                 for(DataSnapshot dataSnapshot : snapshot.getChildren()){
                     ServiceProvider serviceProvider = new ServiceProvider();
 
-                    serviceProvider.setProfilePic(dataSnapshot.child("profilePic").getValue().toString());
                     serviceProvider.setName(dataSnapshot.child("name").getValue().toString());
+                    serviceProvider.setFamilyName(dataSnapshot.child("familyName").getValue().toString());
+                    serviceProvider.setProfilePic(dataSnapshot.child("profilePic").getValue().toString());
                     serviceProvider.setAddress(dataSnapshot.child("address").getValue().toString());
+                    serviceProvider.setPhone(dataSnapshot.child("phone").getValue().toString());
+                    serviceProvider.setEmail(dataSnapshot.child("email").getValue().toString());
 
                     if(dataSnapshot.child("babysitter").getValue().toString().equals("true")){
                         serviceProvider.setBabysitter(true);
@@ -90,7 +94,7 @@ public class MainActivity extends AppCompatActivity implements CardCustomAdapter
                     if(!serviceProvider.getServices().equals("Not a Service Provider")) {
                         serviceProviderList.add(serviceProvider);
                     }
-                    
+
                 }
                 adapter = new CardCustomAdapter(getApplicationContext(), serviceProviderList);
                 recyclerView.setAdapter(adapter);
@@ -140,20 +144,22 @@ public class MainActivity extends AppCompatActivity implements CardCustomAdapter
         startActivity(intent);
     }
 
-    @Override
-    public void onCardClick(int position) {
-
-        Intent intent = new Intent(this,ServiceProviderProfile.class);
-        intent.putExtra("service_provider_profile", serviceProviderList.get(position));
-        Log.d(TAG, "onCardClick: "+ serviceProviderList.get(position));
-        startActivity(intent);
-    }
+//    @Override
+//    public void onCardClick(CardCustomAdapter.MyViewHolder profile) {
+//
+//        Intent intent = new Intent(this,ServiceProviderProfile.class);
+//        intent.putExtra("service_provider_profile", (Serializable) profile);
+//        Log.d(TAG, "onCardClick: "+ profile);
+//        startActivity(intent);
+//    }
 
     @Override
     public void onClick(View v) {
         Intent intent = new Intent(this, ServiceProviderProfile.class);
         startActivity(intent);
     }
+
+
 //
 //    public void goToServiceProvider(View view) {
 //        Button serviceProviderCard = (Button) view;

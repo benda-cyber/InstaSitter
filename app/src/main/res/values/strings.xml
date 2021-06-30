@@ -34,5 +34,6 @@
     <string name="id_number">ID number</string>
     <string name="choose_photo">Choose a profile picture</string>
     <string name="choose_photo_id">Choose an ID picture</string>
+    <string name="back">Back</string>
 
 </resources>

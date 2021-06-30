@@ -20,7 +20,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/cardstyle"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:id="@+id/linear_layout">
 
             <ImageView
                 android:id="@+id/serviceProviderPhoto"
