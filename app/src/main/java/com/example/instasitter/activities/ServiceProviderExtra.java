@@ -1,8 +1,15 @@
 package com.example.instasitter.activities;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContract;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.Intent;
@@ -19,6 +26,7 @@ import android.widget.Toast;
 import com.example.instasitter.R;
 import com.example.instasitter.classes.ServiceProvider;
 import com.example.instasitter.classes.User;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -26,23 +34,26 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import org.jetbrains.annotations.NotNull;
+
 public class ServiceProviderExtra extends AppCompatActivity implements View.OnClickListener {
 
     private static final int PICK_IMAGE = 1;
-    ImageView profilePicture, idPicture;
-    Button chooseProfilePicButton, chooseIdPicButton, registerButton;
-    Uri profileImgUri;
-    Uri idImgUri;
-    FirebaseStorage storage;
-    StorageReference storageRef;
-    String uid;
-    EditText idNum;
-    Switch isDogwalker;
-    Switch isBabysitter;
-    User user;
-    ServiceProvider serviceUser;
-    int flag =-1;
-    FirebaseDatabase database;
+    private ImageView profilePicture, idPicture;
+    private Button chooseProfilePicButton, chooseIdPicButton, registerButton, uploadPicsButton;
+    private Uri profileImgUri;
+    private Uri idImgUri;
+    private FirebaseStorage storage;
+    private StorageReference storageRef;
+    private String uid;
+    private EditText idNum;
+    private Switch isDogwalker;
+    private Switch isBabysitter;
+    private User user;
+    private ServiceProvider serviceUser;
+    private int flag =-1;
+    private int picsFlag = -1;
+    private FirebaseDatabase database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,8 +67,11 @@ public class ServiceProviderExtra extends AppCompatActivity implements View.OnCl
         profilePicture = (ImageView) findViewById(R.id.registerProfilePicture);
         idPicture = (ImageView) findViewById(R.id.registerIdPicture);
 
-        chooseProfilePicButton = (Button) findViewById(R.id.registerProfilePictureUploadBottun);
-        chooseIdPicButton = (Button) findViewById(R.id.registerIdPictureUploadBottun);
+        chooseProfilePicButton = (Button) findViewById(R.id.registerProfilePictureChooserBottun);
+        chooseIdPicButton = (Button) findViewById(R.id.registerIdPictureChooserBottun);
+
+        uploadPicsButton = (Button) findViewById(R.id.uploadPicturesButton);
+
         registerButton = (Button) findViewById(R.id.serviceProviderRegisterButton);
         idNum = findViewById(R.id.registerIdNumber);
         isDogwalker = (Switch) findViewById(R.id.dogwalker);
@@ -78,22 +92,51 @@ public class ServiceProviderExtra extends AppCompatActivity implements View.OnCl
         chooseProfilePicButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                flag = 0;
-                fileChooser();
+
+                mGetContent.launch("image/*");
+
+                if(profilePicture!=null){
+                    flag = 0;
+                }
+
             }
         });
         chooseIdPicButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                flag = 1;
-                fileChooser();
+
+                mGetContent.launch("image/*");
+
+                if(idPicture!=null){
+                    flag = 1;
+                }
 
             }
         });
 
+        uploadPicsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if((flag!=1)||(profileImgUri==null)||(idImgUri==null)){
+                    Toast.makeText(ServiceProviderExtra.this, "Please choose your photos",
+                            Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                fileUploader();
+
+            }
+        });
+
+
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                if(picsFlag!=1){
+                    Toast.makeText(ServiceProviderExtra.this, "Please upload your photos",
+                            Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
                 if((idNum!=null) && (idNum.length()==9)){
                     serviceUser.setIdNum(idNum.getText().toString());
@@ -109,6 +152,7 @@ public class ServiceProviderExtra extends AppCompatActivity implements View.OnCl
                             Toast.LENGTH_SHORT).show();
                     return;
                 }
+
                 if(isBabysitter.isChecked()) {
                     serviceUser.setBabysitter(true);
                 }
@@ -116,8 +160,8 @@ public class ServiceProviderExtra extends AppCompatActivity implements View.OnCl
                 if(isDogwalker.isChecked()) {
                     serviceUser.setDogwalker(true);
                 }
-                fileUploader();
-         
+
+
                 DatabaseReference myRef = database.getReference("service_providers").child(uid);
                 myRef.setValue(serviceUser);
 
@@ -138,75 +182,76 @@ public class ServiceProviderExtra extends AppCompatActivity implements View.OnCl
 
     }
 
-    private void fileUploader(){
+    private void fileUploader() {
+        if ((profileImgUri != null) && (idImgUri != null)) {
 
-        ProgressDialog pd = new ProgressDialog(this);
-        pd.setMessage("Uploading Images");
-        pd.show();
-//        StorageReference storageReference = mStorageRef.child(uid).child();
-        StorageReference profilePicRef = storageRef.child(uid).child("profile_picture." + getExtension(profileImgUri));
-        StorageReference idPicRef = storageRef.child(uid).child("id_picture." + getExtension(idImgUri));
 
-        profilePicRef.putFile(profileImgUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                profilePicRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                    @Override
-                    public void onSuccess(Uri uri) {
-//                        String profilePicUrl = String.valueOf(uri);
-//                        StoreLink(profilePicUrl);
-                    }
-                });
+            ProgressDialog pd = new ProgressDialog(this);
+            pd.setMessage("Uploading Images");
+            pd.show();
+            StorageReference profilePicRef = storageRef.child(uid).child("profile_picture." + getExtension(profileImgUri));
+            StorageReference idPicRef = storageRef.child(uid).child("id_picture." + getExtension(idImgUri));
+
+            profilePicRef.putFile(profileImgUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    profilePicRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        @Override
+                        public void onSuccess(Uri uri) {
+
+                            serviceUser.setProfilePic(uri.toString());
+
+                            picsFlag = 0;
+                        }
+                    });
+                }
+            });
+
+            idPicRef.putFile(idImgUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    idPicRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        @Override
+                        public void onSuccess(Uri uri) {
+                            picsFlag = 1;
+                        }
+                    });
+                }
+            });
+            pd.dismiss();
+            if(picsFlag == 1){
+                Toast.makeText(ServiceProviderExtra.this, "Images Uploaded Successfully",
+                        Toast.LENGTH_SHORT).show();
             }
-        });
-        idPicRef.putFile(idImgUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                idPicRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                    @Override
-                    public void onSuccess(Uri uri) {
-//                        String profilePicUrl = String.valueOf(uri);
-//                        StoreLink(profilePicUrl);
-                    }
-                });
-            }
-        });
-    }
-
-//    private void StoreLink(String Url) {
-//        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child()
-//    }
-
-    private void fileChooser() {
-
-        Intent intent = new Intent();
-        intent.setType("image/*");
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(intent, PICK_IMAGE);
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == PICK_IMAGE && resultCode == RESULT_OK && data!=null && data.getData()!=null){
-            if(flag == 0){
-
-                profileImgUri = data.getData();
-                profilePicture.setImageURI(profileImgUri);
-
-            }
-            if(flag == 1){
-
-                idImgUri = data.getData();
-                idPicture.setImageURI(idImgUri);
-
-            }
-
-
-
-
         }
     }
+
+
+
+
+    ActivityResultLauncher<String> mGetContent = registerForActivityResult(new ActivityResultContracts.GetContent(), new ActivityResultCallback<Uri>() {
+        @Override
+        public void onActivityResult(Uri result) {
+            if ((result.getPath() != null) && (result != null)) {
+                if (flag == 0) {
+
+                    profileImgUri = result;
+                    profilePicture.setImageURI(profileImgUri);
+
+                }
+                if (flag == 1) {
+
+                    idImgUri = result;
+                    idPicture.setImageURI(idImgUri);
+
+                }
+            }
+            else{
+                Toast.makeText(ServiceProviderExtra.this, "Please choose an image",
+                        Toast.LENGTH_SHORT).show();
+            }
+        }
+    });
 
 
     @Override

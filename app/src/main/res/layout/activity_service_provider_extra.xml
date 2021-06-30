@@ -17,46 +17,106 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/steps"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="center"
-            android:text="@string/service_provider_title_txt"
-            android:textSize="36sp" />
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/steps"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/service_provider_title_txt"
+                android:textSize="36sp" />
+        </LinearLayout>
 
 
-        <ImageView
-            android:id="@+id/registerProfilePicture"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            tools:srcCompat="@tools:sample/avatars" />
+            android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/registerProfilePictureUploadBottun"
+            <ImageView
+                android:id="@+id/registerProfilePicture"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                tools:srcCompat="@tools:sample/avatars" />
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/buttonstyle2"
-            android:text="@string/upload_photo" />
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/registerProfilePictureChooserBottun"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/buttonstyle2"
+                android:text="@string/choose_photo" />
+
+        </LinearLayout>
 
 
-        <ImageView
-            android:id="@+id/registerIdPicture"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            tools:srcCompat="@tools:sample/avatars" />
+            android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/registerIdPictureUploadBottun"
+            <ImageView
+                android:id="@+id/registerIdPicture"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                tools:srcCompat="@tools:sample/avatars" />
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/buttonstyle2"
-            android:text="@string/upload_photo_id" />
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/registerIdPictureChooserBottun"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/buttonstyle2"
+                android:text="@string/choose_photo_id" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal"></LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/uploadPicturesButton"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/buttonstyle2"
+                android:text="@string/upload_photos" />
+
+        </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -71,15 +131,23 @@
                 android:hint="@string/id_number"
                 android:inputType="textPersonName" />
         </LinearLayout>
-        <TextView
-            android:id="@+id/kindofser"
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="center"
-            android:text="@string/what_service"
-            android:textColor="?attr/textColorAlertDialogListItem"
-            android:textSize="18sp" />
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/kindofser"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/what_service"
+                android:textColor="?attr/textColorAlertDialogListItem"
+                android:textSize="18sp" />
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -104,14 +172,21 @@
                 android:text="@string/babysitter" />
         </LinearLayout>
 
-        <Button
-            android:id="@+id/serviceProviderRegisterButton"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/buttonstyle2"
-            android:gravity="center"
-            android:text="@string/register" />
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/serviceProviderRegisterButton"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/buttonstyle2"
+                android:gravity="center"
+                android:text="@string/register" />
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"

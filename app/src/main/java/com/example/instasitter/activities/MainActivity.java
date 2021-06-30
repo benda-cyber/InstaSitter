@@ -6,39 +6,39 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.example.instasitter.adapters.CardCustomAdapter;
 import com.example.instasitter.R;
-import com.example.instasitter.classes.ServiceProviderModel;
-import com.example.instasitter.classes.MyData;
-import com.example.instasitter.classes.User;
+import com.example.instasitter.classes.ServiceProvider;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity implements CardCustomAdapter.OnCardListener,FloatingActionButton.OnClickListener{
 
-    private static CardCustomAdapter adapter;
+    private CardCustomAdapter adapter;
     private RecyclerView.LayoutManager layoutManager;
     private static RecyclerView recyclerView;
-    private static ArrayList<ServiceProviderModel> data;
+    private static ArrayList<ServiceProvider> serviceProviderList;
     public static View.OnTouchListener myOnClickListener;
-    private static ArrayList<Integer> removedItems;
+    private static ArrayList<ServiceProvider> removedItems;
     private static final String TAG = "MainActivity";
-    DatabaseReference myRef;
-    FirebaseDatabase database;
+    private DatabaseReference myRef;
+    private FirebaseDatabase database;
+    private Context mContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,25 +53,69 @@ public class MainActivity extends AppCompatActivity implements CardCustomAdapter
 
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
-        data = new ArrayList<ServiceProviderModel>();
+        myRef = FirebaseDatabase.getInstance().getReference();
+        serviceProviderList = new ArrayList<>();
+        
+        removedItems = new ArrayList<>();
 
-        for (int i = 0; i < MyData.nameArray.length; i++) {
-            data.add(new ServiceProviderModel(
-                    MyData.nameArray[i],
-                    MyData.locationArray[i],
-                    MyData.serviceTypeArray[i],
-                    MyData.id_[i],
-                    MyData.drawableArray[i]
-            ));
-        }
-
-        removedItems = new ArrayList<Integer>();
-
-        adapter = new CardCustomAdapter(data,this);
+        adapter = new CardCustomAdapter(this,serviceProviderList);
         recyclerView.setAdapter(adapter);
+
+        ClearAll();
+
+        GetDataFromFirebase();
 
     }
 
+    private void GetDataFromFirebase() {
+        Query query = myRef.child("service_providers");
+
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull @org.jetbrains.annotations.NotNull DataSnapshot snapshot) {
+                ClearAll();
+                for(DataSnapshot dataSnapshot : snapshot.getChildren()){
+                    ServiceProvider serviceProvider = new ServiceProvider();
+
+                    serviceProvider.setProfilePic(dataSnapshot.child("profilePic").getValue().toString());
+                    serviceProvider.setName(dataSnapshot.child("name").getValue().toString());
+                    serviceProvider.setAddress(dataSnapshot.child("address").getValue().toString());
+
+                    if(dataSnapshot.child("babysitter").getValue().toString().equals("true")){
+                        serviceProvider.setBabysitter(true);
+                    }
+                    if(dataSnapshot.child("dogwalker").getValue().toString().equals("true")){
+                        serviceProvider.setDogwalker(true);
+                    }
+                    if(!serviceProvider.getServices().equals("Not a Service Provider")) {
+                        serviceProviderList.add(serviceProvider);
+                    }
+                    
+                }
+                adapter = new CardCustomAdapter(getApplicationContext(), serviceProviderList);
+                recyclerView.setAdapter(adapter);
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull @org.jetbrains.annotations.NotNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    private void ClearAll() {
+        if(serviceProviderList != null){
+            serviceProviderList.clear();
+
+            if(adapter != null){
+                adapter.notifyDataSetChanged();
+            }
+        }
+        else{
+            serviceProviderList = new ArrayList<>();
+        }
+    }
 
 
 //    @Override
@@ -100,8 +144,8 @@ public class MainActivity extends AppCompatActivity implements CardCustomAdapter
     public void onCardClick(int position) {
 
         Intent intent = new Intent(this,ServiceProviderProfile.class);
-        intent.putExtra("service_provider_profile", data.get(position));
-        Log.d(TAG, "onCardClick: "+data.get(position));
+        intent.putExtra("service_provider_profile", serviceProviderList.get(position));
+        Log.d(TAG, "onCardClick: "+ serviceProviderList.get(position));
         startActivity(intent);
     }
 

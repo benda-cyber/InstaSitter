@@ -12,11 +12,14 @@ public class ServiceProvider extends User implements Serializable {
 
     private boolean babysitter;
 
+    private String profilePic;
+
     public ServiceProvider(User user) {
         super(user.getName(), user.getFamilyName(), user.getDateOfBirth(),user.getPhone(), user.getAddress(), user.getEmail(), user.getPassword());
         this.idNum = null;
         this.babysitter = false;
         this.dogwalker = false;
+        this.profilePic = null;
     }
     public ServiceProvider(User user,String idNum, boolean dogwalker, boolean babysitter){
         super(user.getName(), user.getFamilyName(), user.getDateOfBirth(),user.getPhone(), user.getAddress(), user.getEmail(), user.getPassword());
@@ -24,6 +27,14 @@ public class ServiceProvider extends User implements Serializable {
         this.babysitter = babysitter;
         this.dogwalker = dogwalker;
 
+    }
+
+    public ServiceProvider() {
+        super();
+        this.idNum = null;
+        this.babysitter = false;
+        this.dogwalker = false;
+        this.profilePic = null;
     }
 
     public String getIdNum() {
@@ -49,4 +60,28 @@ public class ServiceProvider extends User implements Serializable {
     public void setDogwalker(boolean dogwalker) {
         this.dogwalker = dogwalker;
     }
+
+    public String getProfilePic() {
+        return profilePic;
+    }
+
+    public void setProfilePic(String profilePic) {
+        this.profilePic = profilePic;
+    }
+    public String getServices(){
+        if(dogwalker && babysitter){
+            return ("Dog Walker, Babysitter");
+
+        }
+        if(dogwalker){
+            return ("Dog Walker");
+        }
+        if(babysitter){
+            return ("Babysitter");
+        }
+        return "Not a Service Provider";
+    }
+
+
+
 }

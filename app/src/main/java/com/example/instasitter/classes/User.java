@@ -21,7 +21,8 @@ public class User implements Serializable {
 
     private String  password;
 
-
+    public User() {
+    }
     public User(String name, String familyName, String dateOfBirth, String phone, String address, String email, String password){
 
         this.name=name;
@@ -43,6 +44,8 @@ public class User implements Serializable {
         email = in.readString();
         password = in.readString();
     }
+
+
 
 //    public static final Creator<User> CREATOR = new Creator<User>() {
 //        @Override

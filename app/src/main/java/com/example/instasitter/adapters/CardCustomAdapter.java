@@ -1,7 +1,7 @@
 package com.example.instasitter.adapters;
 
 import android.content.ClipData.Item;
-import android.content.Intent;
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,28 +13,28 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.RecyclerView.ViewHolder;
 
+import com.bumptech.glide.Glide;
 import com.example.instasitter.R;
-import com.example.instasitter.activities.ServiceProviderProfile;
-import com.example.instasitter.activities.MainActivity;
-import com.example.instasitter.classes.ServiceProviderModel;
-import com.example.instasitter.classes.User;
+import com.example.instasitter.classes.ServiceProvider;
 
 import java.util.ArrayList;
 
 public class CardCustomAdapter extends RecyclerView.Adapter<CardCustomAdapter.MyViewHolder> {
 
     private static final String TAG = "CardCustomAdapter";
-    private ArrayList<ServiceProviderModel> dataSet;
+    private Context mContext;
+    private ArrayList<ServiceProvider> dataSet;
     private OnCardListener mOnCardListener;
 
-    public CardCustomAdapter(ArrayList<ServiceProviderModel> data, OnCardListener onCardListener) {
+    public CardCustomAdapter(Context mContext, ArrayList<ServiceProvider> data) {
         this.dataSet = data;
-        this.mOnCardListener = onCardListener;
+        this.mContext = mContext;
     }
 
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cards_layout, parent, false);
 
         MyViewHolder myViewHolder = new MyViewHolder(view,mOnCardListener);
@@ -52,10 +52,10 @@ public class CardCustomAdapter extends RecyclerView.Adapter<CardCustomAdapter.My
         CardView cardView = holder.cardView;
 
         textViewName.setText(dataSet.get(listPosition).getName());
-        textViewLocation.setText(dataSet.get(listPosition).getLocation());
-        textViewServiceType.setText(dataSet.get(listPosition).getServiceType());
-        imageView.setImageResource(dataSet.get(listPosition).getImage());
+        textViewLocation.setText(dataSet.get(listPosition).getAddress());
+        textViewServiceType.setText(dataSet.get(listPosition).getServices());
 
+        Glide.with(mContext).load(dataSet.get(listPosition).getProfilePic()).into(imageView);
     }
 
     public class MyViewHolder extends ViewHolder implements View.OnClickListener {
